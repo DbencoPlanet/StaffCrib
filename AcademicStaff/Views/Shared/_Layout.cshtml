@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+
+    <!-- Meta Tags -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    @Scripts.Render("~/bundles/modernizr")
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="ACADEMIC | Staff Registration" />
+    <meta name="keywords" content="academy, ICT, Business, technical, elearning, networking," />
+    <meta name="author" content="" />
+
+    <!-- Page Title -->
+    <title>STAFFCRIB</title>
+
+    <!-- Favicon and Touch Icons -->
+    <link href="~/Content/Admin/images/exwhyzeefavico.jpg" rel="shortcut icon" type="image/jpg">
+
+    <!-- Stylesheet -->
+    <link href="~/Content/Admin/css/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/Admin/css/bootstrap.min.css" rel="stylesheet" />
+    
+    <link href="~/Content/Admin/css/animate.css" rel="stylesheet" />
+    <link href="~/Content/Admin/css/css-plugin-collections.css" rel="stylesheet" />
+
+    <!-- CSS | menuzord megamenu skins -->
+    <link href="~/Content/Admin/css/menuzord-skins/menuzord-rounded-boxed.css" rel="stylesheet" />
+    <!-- CSS | Main style file -->
+    <link href="~/Content/Admin/css/style-main.css" rel="stylesheet" />
+    <!-- CSS | Preloader Styles -->
+    <link href="~/Content/Admin/css/preloader.css" rel="stylesheet" />
+    <!-- CSS | Custom Margin Padding Collection -->
+    <link href="~/Content/Admin/css/custom-bootstrap-margin-padding.css" rel="stylesheet" />
+    <!-- CSS | Responsive media queries -->
+    <link href="~/Content/Admin/css/responsive.css" rel="stylesheet" />
+    <!-- CSS | Style css. This is the file where you can place your own custom css code. Just uncomment it and use it. -->
+    <!-- <link href="css/style.css" rel="stylesheet" type="text/css"> -->
+    <!-- CSS | Theme Color -->
+    @RenderSection("Style", required: false)
+    <link href="~/Content/Admin/css/colors/theme-skin-color-set-1.css" rel="stylesheet"/>
+
+
+
+    <!-- external javascripts -->
+    @*<script src="~/Content/Admin/js/jquery-2.2.4.min.js"></script>
+    <script src="~/Content/Admin/js/jquery-ui.min.js"></script>
+    <script src="~/Content/Admin/js/bootstrap.min.js"></script>*@
+    <!-- JS | jquery plugin collection for this theme -->
+    @*<script src="~/Content/Admin/js/jquery-plugin-collection.js"></script>*@
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="">
+    <div id="wrapper" class="clearfix">
+
+
+        <!-- Start main-content -->
+
+        @RenderBody()
+
+        <!-- end main-content -->
+        <!-- Footer -->
+        <footer id="footer" class="footer" data-bg-color="#1f1f1f">
+            <div class="container pt-70 pb-40">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 text-center">
+                        <img src="~/Content/images/ico.jpg" />
+                        <p class="font-12 mt-20 mb-20 text-white">We are always ready to help you.</p>
+                        <ul class="styled-icons flat medium list-inline mb-40">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a> </li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a> </li>
+                            <li><a href="#"><i class="fa fa-pinterest"></i></a> </li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a> </li>
+                            <li><a href="#"><i class="fa fa-youtube"></i></a> </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="footer-bottom" data-bg-color="#2f2f2f">
+                <div class="container pt-15 pb-10">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="font-11 text-black-777 m-0">Copyright &copy;@DateTime.Now.Year STAFFCRIB.All Rights Reserved </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+    </div>
+    <!-- end wrapper -->
+    <!-- Footer Scripts -->
+    <!-- JS | Custom script for all pages -->
+    @*<script src="js/custom.js"></script>*@
+    <!-- external javascripts -->
+    <script src="~/Content/Admin/js/jquery-2.2.4.min.js"></script>
+    <script src="~/Content/Admin/js/jquery-ui.min.js"></script>
+    <script src="~/Content/Admin/js/bootstrap.min.js"></script>
+    <!-- JS | jquery plugin collection for this theme -->
+    <script src="~/Content/Admin/js/jquery-plugin-collection.js"></script>
+    <script src="~/Content/Admin/js/custom.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

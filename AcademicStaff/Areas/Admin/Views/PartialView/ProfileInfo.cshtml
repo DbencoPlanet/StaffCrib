@@ -1,0 +1,63 @@
+﻿@using AcademicStaff.Areas.Service
+@{
+    /**/
+
+    string img = "";
+    if (GeneralService.UserInfo() != null)
+    {
+        img = GeneralService.UserInfo().Photo;
+
+    }
+}
+<div class="user-panel">
+    <div class="pull-left image">
+        @if (!string.IsNullOrEmpty(img))
+        {
+            <img src="@Url.Content(img)" class="img-circle" alt="User Image">
+        }
+        else
+        {
+            if (GeneralService.UserInfo().Gender == AcademicStaff.Models.Entities.Gender.Male)
+            {
+                <img src="~/Content/AdminLTE/dist/img/avatar5.png" class="img-circle" alt="User Image">
+            }
+            else if (GeneralService.UserInfo().Gender == AcademicStaff.Models.Entities.Gender.Female)
+            {
+                <img src="~/Content/AdminLTE/dist/img/avatar3.png" class="img-circle" alt="User Image">
+            }
+            else
+            {
+                <img src="~/Content/AdminLTE/dist/img/avatar.png" class="img-circle" alt="User Image">
+            }
+        }
+
+
+    </div>
+    <div class="pull-left info">
+
+        @if (GeneralService.UserInfo() != null)
+        {
+            <p>
+                @GeneralService.UserInfo().Fullname<br/>
+                @*<small>(@GeneralService.UserInfo().Rank)</small>*@
+
+            </p>
+
+
+        }
+
+        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+    </div>
+
+</div>
+<!-- search form -->
+@*<form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+    </form>*@

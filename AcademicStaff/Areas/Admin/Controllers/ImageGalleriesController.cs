@@ -1,0 +1,153 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using AcademicStaff.Models;
+using AcademicStaff.Models.Entities;
+using AcademicStaff.Areas.Data.IServices;
+using AcademicStaff.Areas.Data.Services;
+
+namespace AcademicStaff.Areas.Admin.Controllers
+{
+    [Authorize(Roles = "Admin,SuperAdmin")]
+    public class ImageGalleriesController : Controller
+    {
+        private ApplicationDbContext db = new ApplicationDbContext();
+        private IImageGalleryService _ImageGalleryServices = new ImageGalleryService();
+
+        public ImageGalleriesController()
+        { }
+        public ImageGalleriesController(ImageGalleryService imageServices)
+        {
+            _ImageGalleryServices = imageServices;
+        }
+
+        // GET: Admin/ImageSliders
+        public async Task<ActionResult> Index()
+        {
+            var imageGallery = await _ImageGalleryServices.List();
+            return View(imageGallery);
+        }
+
+        // GET: Admin/ImageSliders/Details/5
+        public async Task<ActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ImageGallery imageGallery = await db.ImageGallery.FindAsync(id);
+            if (imageGallery == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(imageGallery);
+        }
+
+        // GET: Admin/ImageSliders/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Admin/ImageSliders/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(ImageGallery models, HttpPostedFileBase upload)
+        {
+            if (ModelState.IsValid)
+            {
+                models.CurrentGallery = true;
+                await _ImageGalleryServices.New(models, upload);
+                return RedirectToAction("Index");
+            }
+
+            return View(models);
+        }
+
+        public async Task<ActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ImageGallery img = await db.ImageGallery.FindAsync(id);
+            if (img == null)
+            {
+                return HttpNotFound();
+            }
+            return View(img);
+        }
+
+        // POST: Content/Assignments/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(ImageGallery imageGallery)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(imageGallery).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(imageGallery);
+        }
+
+
+        // POST: Admin/ImageSliders/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddToGallery(int id)
+        {
+            var models = await db.ImageGallery.FindAsync(id);
+            await _ImageGalleryServices.AddToGallery(models);
+            return RedirectToAction("Index");
+
+        }
+
+        // GET: Admin/ImageSliders/Delete/5
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ImageGallery imageGallery = await db.ImageGallery.FindAsync(id);
+            if (imageGallery == null)
+            {
+                return HttpNotFound();
+            }
+            return View(imageGallery);
+        }
+
+        // POST: Admin/ImageSliders/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(int id)
+        {
+            await _ImageGalleryServices.Delete(id);
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
+}

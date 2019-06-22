@@ -1,0 +1,69 @@
+﻿@model IEnumerable<AcademicStaff.Models.Entities.Event>
+
+@using System.Text.RegularExpressions;
+@helper Truncate(string input, int lenght)
+{
+    if (input.Length <= lenght)
+    {
+        @Html.Raw(input)
+    }
+    else
+    {
+        @Html.Raw(input.Substring(0, input.IndexOf(" ", lenght)).ToString())
+    }
+}
+
+
+
+<section class="blog-area section-gap" id="news">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-70 col-lg-8">
+                <div class="title text-center">
+                    <h1 class="mb-10">UPCOMING EVENTS</h1>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+            <div class="col-lg-4 col-md-6 single-blog">
+                <div class="thumb">
+                    <img class="img-fluid" src="~/Content/AdminLTE/dist/img/bg-6.jpg" alt="">
+                </div>
+                <p class="meta">Date @item.Start.ToString("dd MMM yyyy") - @item.End.ToString("dd MMM yyyy")</p>
+                <a href="@Url.Action("EventDetails", "Home", new { id = item.Id })">
+                    <h5>@item.Subject</h5>
+                </a>
+                <p style="text-align:justify;">
+                    @{
+
+                        var noHtml = Regex.Replace(item.DIscription, @"<[^>]*(>|$)|&nbsp;|&zwnj;|&raquo;|&laquo;", string.Empty).Trim();
+                        item.DIscription = noHtml;
+                    }
+
+                    @Html.Raw(Truncate(noHtml, 200))
+                </p>
+                <a href="@Url.Action("EventDetails", "Home", new { id = item.Id })" class="genric-btn info circle arrow justify-content-center align-items-center"><span class="details">Details</span><span class="lnr lnr-arrow-right"></span></a>
+            </div>
+            }
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

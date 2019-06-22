@@ -1,0 +1,131 @@
+﻿@using AcademicStaff.Areas.Service
+@{
+    string img = "";
+    if (GeneralService.UserInfo() != null)
+    {
+        img = GeneralService.UserInfo().Photo;
+        int? proId = GeneralService.UserInfo().Id;
+    }
+
+
+}
+
+<nav class="navbar navbar-static-top">
+    <!-- Sidebar toggle button-->
+    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+    </a>
+
+    <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+
+            <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    @if (!string.IsNullOrEmpty(img))
+                    {
+                        <img src="@Url.Content(img)" class="user-image" alt="User Image">
+                        <span class="hidden-xs">@GeneralService.UserInfo().Fullname</span>
+                    }
+                    else
+                    {
+                        if (GeneralService.UserInfo().Gender == AcademicStaff.Models.Entities.Gender.Male)
+                        {
+                            <img src="~/Content/AdminLTE/dist/img/avatar5.png" class="user-image" alt="User Image">
+                        }
+                        else if (GeneralService.UserInfo().Gender == AcademicStaff.Models.Entities.Gender.Female)
+                        {
+                            <img src="~/Content/AdminLTE/dist/img/avatar3.png" class="user-image" alt="User Image">
+                        }
+                        else
+                        {
+                            <img src="~/Content/AdminLTE/dist/img/avatar.png" class="user-image" alt="User Image">
+                        }
+                    }
+
+                    @*else
+                        {
+                            <img src="~/Content/AdminLTE/dist/img/avatar5.png" class="user-image" alt="User Image">
+                        }*@
+
+
+                </a>
+                <ul class="dropdown-menu">
+                    <!-- User image -->
+                    <li class="user-header">
+                        @if (!string.IsNullOrEmpty(img))
+                        {
+                            <img src="@Url.Content(img)" class="img-circle" alt="User Image"> <p>
+                                @GeneralService.UserInfo().Fullname
+                                <small>@GeneralService.UserInfo().Rank</small>
+                            </p>
+                        }
+
+                        else
+                        {
+                            if (GeneralService.UserInfo().Gender == AcademicStaff.Models.Entities.Gender.Male)
+                            {
+                                <img src="~/Content/AdminLTE/dist/img/avatar5.png" class="img-circle" alt="User Image">
+                                <p>
+                                    @GeneralService.UserInfo().Fullname
+                                    <small>@GeneralService.UserInfo().Rank</small>
+                                </p>
+                            }
+                            else if (GeneralService.UserInfo().Gender == AcademicStaff.Models.Entities.Gender.Female)
+                            {
+                                <img src="~/Content/AdminLTE/dist/img/avatar3.png" class="img-circle" alt="User Image">
+                                <p>
+                                    @GeneralService.UserInfo().Fullname
+                                    <small>@GeneralService.UserInfo().Rank</small>
+                                </p>
+                            }
+                            else
+                            {
+                                <img src="~/Content/AdminLTE/dist/img/avatar.png" class="img-circle" alt="User Image">
+                                <p>
+                                    @GeneralService.UserInfo().Fullname
+                                    <small>@GeneralService.UserInfo().Rank</small>
+                                </p>
+                            }
+                        }
+
+                        @*else
+        {
+            <img src="~/Content/AdminLTE/dist/img/avatar5.png" class="img-circle" alt="User Image">
+        }*@
+
+
+                    </li>
+                    <!-- Menu Body -->
+                    <!-- Menu Body -->
+                    <li class="user-body">
+
+                        <!-- Menu Footer-->
+                    <li class="user-footer">
+                        <div class="pull-left">
+                            <a href="@Url.Action("MyProfile", "User", new { area = "Staff" })"> Profile</a>
+                        </div>
+                        @*<div class="xs-pull-center">
+                                <a href="@Url.Action("EditProfile", "UserManager", new { area = "Admin", id = proId })"> Profile</a>
+                            </div>*@
+                        <div class="pull-right">
+                            @using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <a href="javascript:document.getElementById('logoutForm').submit()">
+
+                                    Sign Out
+                                </a>
+                            }
+                        </div>
+                    </li>
+                </ul>
+
+
+                <!-- Control Sidebar Toggle Button -->
+
+
+        </ul>
+    </div>
+
+</nav>

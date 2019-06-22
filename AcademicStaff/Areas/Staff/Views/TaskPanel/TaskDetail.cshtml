@@ -1,0 +1,141 @@
+﻿@model AcademicStaff.Models.Entities.Tasks
+
+
+@{
+    ViewBag.Title = "TaskDetail";
+    Layout = "~/Views/Shared/_AreaLayout.cshtml";
+}
+
+
+
+
+
+
+<div class="row">
+    <div class="col-md-1 col-sm-1"></div>
+    <div class="col-md-10 col-xs-12 col-sm-10">
+        <div class="box box-default">
+            <div class="box-header with-border">
+
+                <h3 class="box-title">Task Details</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-8 col-xs-12 col-sm-12">
+                        <div class="table-responsive">
+                            <table class="table table-success table-bordered" style="background-color:#3c8dbc; color:#ffffff;">
+
+                                <tr>
+                                    <th>STAFF NAME</th>
+
+                                    <td>@Model.Profile.Fullname</td>
+                                </tr>
+                                <tr>
+                                    <th>TASK TITLE</th>
+                                    <td>@Model.TaskTitle</td>
+                                </tr>
+                                @*<tr>
+                                <th>TASK DESCRIPTION</th>
+                                <td>@Html.Raw(Model.TaskDiscription)</td>
+                            </tr>*@
+
+                                <tr>
+                                    <th>START DATE</th>
+                                    <td>@Model.StartDate.ToString("ddd dd MMM, yyyy")</td>
+                                </tr>
+                                <tr>
+                                    <th>END DATE</th>
+                                    <td>@Model.EndDate.ToString("ddd dd MMM, yyyy")</td>
+                                </tr>
+                                <tr>
+                                    <th>REMARK</th>
+                                    <td>
+                                        @foreach (var com in Model.Report)
+                                        {
+                                            @Html.Raw(com.Comment)
+
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>STATUS</th>
+                                    <td>
+                                        @foreach (var sta in Model.Report)
+                                        {
+                                            @sta.TaskStatus
+                                        }
+                                    </td>
+
+
+
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box-body">
+
+                <div class="container-fluid">
+                    <h3 style="font-weight:bold">Task Description</h3>
+                    <div class="" style="max-height:600px;overflow:scroll; font-size:14px;">
+                        @Html.Raw(Model.TaskDiscription)
+
+                    </div>
+                </div>
+            </div>
+            <div class="box-body">
+
+                <div class="container-fluid">
+                    <h3 style="font-weight:bold">Report</h3>
+                    <hr style="border:1px solid #000000" />
+                    <div class="" style="max-height:600px;overflow:scroll; font-size:14px;">
+                        @foreach (var report in Model.Report)
+                        {
+                            @Html.Raw(report.Content)
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+
+            @if (Model.EndDate > DateTime.UtcNow.Date)
+            {
+                <div class="box-footer">
+                    @Html.ActionLink("Add/Update Report", "SubmitReport", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                    <a href="javascript: history.back()" class="btn btn-default">Cancel</a>
+                </div>
+            }
+
+            else if (Model.EndDate < DateTime.UtcNow.Date && Model.TaskStatus == AcademicStaff.Models.Entities.TaskStatus.Completed)
+            {
+                <div class="box-footer">
+                    <a class="btn btn-danger">You have completed your task</a>
+                    <a href="javascript: history.back()" class="btn btn-default">Cancel</a>
+                </div>
+            }
+            else
+            {
+                <div class="box-footer">
+                    <a class="btn btn-danger">Submission Date Over</a>
+                    <a href="javascript: history.back()" class="btn btn-default">Cancel</a>
+                </div>
+            }
+
+
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+
+
+    <div class="col-md-1 col-sm-1"></div>
+
+</div>
+
+
+

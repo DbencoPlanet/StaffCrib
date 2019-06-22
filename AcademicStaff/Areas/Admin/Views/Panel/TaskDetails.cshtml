@@ -1,0 +1,106 @@
+﻿@model AcademicStaff.Models.Entities.Tasks
+
+
+@{
+    ViewBag.Title = "TaskDetail";
+    Layout = "~/Views/Shared/_AreaLayout.cshtml";
+}
+
+
+
+
+
+
+<div class="row">
+    <div class="col-md-1 col-sm-1"></div>
+    <div class="col-md-10 col-sm-10">
+        <div class="box box-default">
+            <div class="box-header with-border">
+
+                <h3 class="box-title">Task Details</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="table-responsive">
+                            <table class="table table-success table-bordered" style="background-color:#3c8dbc; color:#ffffff;">
+
+                                <tr>
+                                    <th>Staff Name</th>
+                                    
+                
+                                    <td>@Model.Profile.Fullname</td>
+                                    
+                                </tr>
+                                <tr>
+                                    <th>Task Title</th>
+                                    <td>@Model.TaskTitle</td>
+                                </tr>
+                                @*<tr>
+                                    <th>Title Discription</th>
+                                    <td>@Html.Raw(Model.TaskDiscription)</td>
+                                </tr>*@
+                                <tr>
+                                    <th>Start Date</th>
+                                    <td>@Model.EndDate.ToString("ddd dd MMM, yyyy")</td>
+                                </tr>
+                                <tr>
+                                    <th>End Date</th>
+                                    <td>@Model.EndDate.ToString("ddd dd MMM, yyyy")</td>
+                                </tr>
+                                <tr>
+                                    <th>Status</th>
+                                    @*<td>@Html.Raw(Model.TaskStatus)</td>*@
+                                    <td>
+                                        @foreach (var report in Model.Report)
+                                        {
+                                            @Html.Raw(report.TaskStatus)
+                                        }
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-body">
+
+                <div class="container-fluid">
+                    <h3 style="font-weight:;">Task</h3>
+                    <div class="">
+                       @Html.Raw(Model.TaskDiscription)
+                    </div>
+                </div>
+            </div>
+            <div class="box-body">
+
+                <div class="container-fluid">
+                    <h3 style="font-weight:;">Report</h3>
+                    <hr style="border:1px solid #000000" />
+                    <div class="">
+                        @foreach (var report in Model.Report)
+                        {
+                            @Html.Raw(report.Content)
+                        }
+                       
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+
+          
+
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+
+
+    <div class="col-md-1 col-sm-1"></div>
+
+</div>
+
+
+

@@ -1,0 +1,49 @@
+﻿<!-- Start search-course Area -->
+<section class="search-course-area relative">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row justify-content-between align-items-center">
+            <div class="col-lg-6 col-md-6 search-course-left">
+                <h1 class="text-white">
+                    What to <br>
+                    expect from us!
+                </h1>
+                <p>
+                    We are here to give your child the best they need to rule their world!
+                </p>
+                <div class="row details-content">
+                    <div class="col single-detials">
+                        <span class="lnr lnr-graduation-hat"></span>
+                        <a href="#"><h4>Experience Instructors</h4></a>
+                        <p>
+                            Our teacher are not just base on certification,they are also experinced in what they are doing.
+                        </p>
+                    </div>
+                    <div class="col single-detials">
+                        <span class="lnr lnr-license"></span>
+                        <a href="#"><h4>Certification</h4></a>
+                        <p>
+                            Our teacher are well certifitied and are here to give you the best
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 search-course-right section-gap">
+                @using (Html.BeginForm("Create", "ContactUs", null, FormMethod.Post, new { @class = "form-wrap" }))
+                {
+                    @Html.AntiForgeryToken()
+                  
+                    <h4 class="text-white pb-20 text-center mb-30">Contact Us for more information</h4>
+                    <input type="text" class="form-control" name="Name" placeholder="Your Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Name'">
+                    <input type="email" class="form-control" name="Email" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address'">
+                    <input type="text" class="form-control" name="Subject" placeholder="Your Subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Subject'">
+                    <input type="text" class="form-control" name="PhoneNumber" placeholder="Your Phone Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Phone Number'">
+                    <textarea class="common-textarea form-control" name="Message" placeholder="Enter Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Messege'" required=""></textarea>
+                    <button class="primary-btn text-uppercase" type="submit">Submit</button>
+                  
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End search-course Area -->

@@ -1,0 +1,157 @@
+﻿@model AcademicStaff.Models.Entities.DailyReport
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AreaLayout.cshtml";
+}
+
+
+<br />
+
+<div class="row">
+    <div class="col-sm-2 col-md-2"></div>
+    <div class="col-xs-12 col-sm-8 col-md-8">
+        <div class="box" style="padding:7px;">
+            <div class="box-header" style="margin-bottom:15px;">
+
+                <h3 class="box-title" style="text-transform:uppercase;"><i class="fa fa-fw fa-users"></i>EDIT DAILY REPORT</h3>
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["error"]
+                    </div>
+                }
+                @if (TempData["msg"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["msg"]
+                    </div>
+                }
+            </div>
+            <div class="box-body">
+                <div class="row">
+
+                    <div class="">
+                        <div class="">
+
+                            @using (Html.BeginForm("Edit", "DailyReport", FormMethod.Post, new { @class = "", enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.Id)
+                                @Html.HiddenFor(model => model.UserId)
+                                @Html.HiddenFor(model => model.ProfileId)
+                                @Html.HiddenFor(model => model.DateCreated)
+                                @Html.HiddenFor(model => model.ReportDate)
+                                @Html.HiddenFor(model => model.ProfileId)
+                                @Html.HiddenFor(model => model.UserId)
+
+
+                                if (TempData["error"] != null)
+                                {
+                                    <div class="alert alert-danger alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                                        @TempData["error"]
+                                    </div>
+                                }
+
+                                <div class="form-group">
+                                    Report Date  @Html.DisplayFor(model => model.ReportDate)
+
+                                </div>
+                                <div class="form-group">
+                                    Date Created Report @Html.DisplayFor(model => model.DateCreated)
+
+                                </div>
+
+                                <h3>Report</h3>
+                                <div class="form-group">
+
+                                    <div class="">
+                                        <textarea class="textarea" placeholder="Place some text here" name="Content" id="mytextarea" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">@Html.Raw(Model.Content)</textarea>
+
+                                        @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <input type="submit" value="Save" class="btn btn-sm btn-primary" style="width:100%" />
+                            }
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+        <!-- /.box -->
+    </div>
+    <div class="col-sm-2 col-md-2"></div>
+</div>
+
+@section Style {
+    <link rel="stylesheet" href="~/Content/AdminLTE/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="~/Content/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+}
+
+@section Scripts {
+    <!-- DataTables -->
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Content/AdminLTE/bower_components/ckeditor/ckeditor.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="~/Content/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <script src="~/Content/AdminLTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+}
+
+@section Scripts2 {
+    <script src="~/Content/AdminLTE/tinymce/tinymce.min.js"></script>
+    @*<script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>*@
+    <script>
+        //tinymce.init({
+        //    selector: '#mytextarea'
+        //});
+
+        tinymce.init({
+            selector: 'textarea',
+            height: 500,
+            theme: 'modern',
+            plugins: [
+                'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                'searchreplace wordcount visualblocks visualchars code fullscreen',
+                'insertdatetime media nonbreaking save table contextmenu directionality',
+                'emoticons template paste textcolor colorpicker textpattern imagetools codesample'
+            ],
+            toolbar1: 'insertfile undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+            toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+            image_advtab: true,
+            templates: [
+                { title: 'Test template 1', content: 'Test 1' },
+                { title: 'Test template 2', content: 'Test 2' }
+            ],
+            content_css: [
+                'css?family=Lato:300,300i,400,400i',
+                'css/codepen.min.css'
+            ]
+        });
+    </script>
+    <script>
+        //Date picker
+        $('#datepicker').datepicker({
+            autoclose: true
+        })
+    </script>
+
+}
+
+

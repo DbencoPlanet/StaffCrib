@@ -1,0 +1,138 @@
+﻿
+@model IEnumerable<AcademicStaff.Models.Entities.Document>
+
+@{
+    ViewBag.Title = " Sent and Received Documents";
+    Layout = "~/Views/Shared/_AreaLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" style="padding:7px;">
+            <div class="box-header" style="margin-bottom:15px;">
+                <h3 class="box-title"><i class="fa fa-fw fa-file-text-o"></i>Sent and Received Doucments Management</h3>
+
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["error"]
+                    </div>
+                }
+
+                @if (TempData["msg"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["msg"]
+                    </div>
+                }
+
+
+            </div>
+
+
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table id="example1" class="table table-bordered table-hover" border="1">
+
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>SENDER</th>
+                            <th>RECEIVER</th>
+                            <th>DOCUMENT NAME</th>
+                            @*<th>DOCUMENT DESCRIPTION</th>*@
+                            <th>DOCUMENT TYPE</th>
+                            <th>DATE SENT</th>
+                            <th>DATE RECEIVED</th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sno = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @{ sno++; }
+                                    @sno
+                                </td>
+
+                                <td>@item.Sender.Fullname</td>
+                                <td>@item.Receiver.Fullname</td>
+                                <td>@item.DocName</td>
+                                @*<td>@Html.Raw(item.Description)</td>*@
+                                <td>@item.DocType2</td>
+                                <td>@item.DateSent</td>
+                                <td>@item.DateReceive</td>
+
+                                <td>
+
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                            Action
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li class="text-color-success">@Html.ActionLink("Details", "SendReceiveDetails", new {id = item.Id })</li>
+                                            <li class="text-color-success"><a href="@Url.Content(item.DocUrl)" download="">Download</a></li>
+                                        </ul>
+                                    </div>
+
+                                </td>
+                            </tr>
+                                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+
+
+
+
+@section Style {
+
+    <link rel="stylesheet" href="~/Content/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+}
+
+@section Scripts {
+    <!-- DataTables -->
+    <script src="~/Content/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+
+}
+
+
+@section Scripts2 {
+    <script>
+        $(function () {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    </script>
+}
+
+
+
+
+
+

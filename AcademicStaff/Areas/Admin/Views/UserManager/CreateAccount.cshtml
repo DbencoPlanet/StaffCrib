@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "CreateAccount";
+    Layout = "~/Views/Shared/_Register.cshtml";
+}
+
+
+
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+        @TempData["error"]
+    </div>
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color text-center">
+        <input type="submit" value="Continue" class="btn btn-primary text-center" />
+
+    </div>
+}
+
+

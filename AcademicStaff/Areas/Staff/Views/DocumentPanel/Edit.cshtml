@@ -1,0 +1,193 @@
+﻿
+@model AcademicStaff.Models.Entities.Document
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AreaLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-1 col-sm-1"></div>
+    <div class="col-md-10 col-xs-12 col-sm-10">
+        <div class="box box-default">
+            <div class="box-header with-border">
+
+                <h3 class="box-title">Edit Document</h3>
+
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["error"]
+                    </div>
+                }
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-5 col-xs-10 col-sm-10">
+                        <div class="table-responsive">
+                            <table class="table table-success table-bordered" style="background-color:#3c8dbc; color:#ffffff;">
+
+                                <tr>
+                                    <th>STAFF NAME</th>
+                                    <td> @ViewBag.doc.Profile.Fullname</td>
+                                </tr>
+                                <tr>
+                                    <th>DOCUMENT NAME</th>
+                                    <td>@ViewBag.doc.DocName</td>
+                                </tr>
+                                <tr>
+                                    <th>DOCUMENT TYPE</th>
+                                    <td>@ViewBag.doc.DocType</td>
+                                </tr>
+                                <tr>
+                                    <th>DESCRIPTION</th>
+                                    <td>@Html.Raw(ViewBag.doc.Description)</td>
+                                </tr>
+                                <tr>
+                                    <th>DATE UPLOADED</th>
+                                    <td>@ViewBag.doc.DateUploaded</td>
+                                </tr>
+                                <tr>
+                                    <th>REMARK</th>
+                                    <td>
+                                        @Html.Raw(ViewBag.doc.Remark)
+                                      
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.ProfileId)
+                    @Html.HiddenFor(model => model.UserId)
+                    @Html.HiddenFor(model => model.DocUrl)
+                    @Html.HiddenFor(model => model.DocType2)
+                    @Html.HiddenFor(model => model.Remark)
+                    @Html.HiddenFor(model => model.DateUploaded)
+                    @Html.HiddenFor(model => model.DateReceive)
+                 
+
+                    <div class="form-group">
+                        @Html.Label("Doc Name", htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.DocName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DocName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Doc Type", htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EnumDropDownListFor(model => model.DocType, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                   
+
+                    <h3 style="font-weight:bold">Description</h3>
+                    <div class="form-group">
+
+                        <div class="">
+                            <textarea class="textarea" placeholder="Place some text here" name="Description" id="mytextarea" style="width: 100%; height: 400px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+
+
+                                @Html.Raw(ViewBag.doc.Description)
+                               
+
+                            </textarea>
+
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+
+                                        <div class="box-footer">
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                            <a href="javascript: history.back()" class="btn btn-default">Cancel</a>
+                                        </div>
+
+            }
+
+        </div>
+        <!-- /.box
+        </div>
+        <!-- /.col -->
+
+
+        <div class="col-md-1 col-sm-1"></div>
+    </div>
+
+</div>
+@section Style
+                                            {
+
+    <link rel="stylesheet" href="~/Content/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+}
+
+@section Scripts
+  {
+    <!-- DataTables -->
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Content/AdminLTE/bower_components/ckeditor/ckeditor.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="~/Content/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+
+}
+
+@section Scripts2
+ {
+
+    <script src="~/Content/AdminLTE/tinymce/tinymce.min.js"></script>
+    @*<script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>*@
+    <script>
+       //tinymce.init({
+       // selector: '#mytextarea'
+       //            });
+
+        tinymce.init({
+            selector: 'textarea',
+            height: 500,
+            theme: 'modern',
+            plugins: [
+                'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                'searchreplace wordcount visualblocks visualchars code fullscreen',
+                'insertdatetime media nonbreaking save table contextmenu directionality',
+                'emoticons template paste textcolor colorpicker textpattern imagetools codesample'
+            ],
+            toolbar1: 'insertfile undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+            toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+            image_advtab: true,
+            templates: [
+                { title: 'Test template 1', content: 'Test 1' },
+                { title: 'Test template 2', content: 'Test 2' }
+            ],
+            content_css: [
+                'css?family=Lato:300,300i,400,400i',
+                'css/codepen.min.css'
+            ]
+        });
+    </script>
+}
+
+
+
+
+
+

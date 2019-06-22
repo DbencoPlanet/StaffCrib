@@ -1,0 +1,86 @@
+﻿
+@model AcademicStaff.Models.Entities.Report
+
+
+@{
+    ViewBag.Title = "Report Detail";
+    Layout = "~/Views/Shared/_AreaLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-1 col-sm-1"></div>
+    <div class="col-md-10 col-xs-12 col-sm-10">
+        <div class="box box-default">
+            <div class="box-header with-border">
+
+                <h3 class="box-title">Report Details</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-5 col-xs-10 col-sm-10">
+                        <div class="table-responsive">
+                            <table class="table table-success table-bordered" style="background-color:#3c8dbc; color:#ffffff;">
+
+                                <tr>
+                                    <th>Name</th>
+                                    <td>@Model.Profile.Fullname</td>
+                                </tr>
+                                <tr>
+                                    <th>Title</th>
+                                    <td>@Model.Task.TaskTitle</td>
+                                </tr>
+                                <tr>
+                                    <th>Last Submission Date</th>
+                                    <td>@Model.Task.EndDate.ToString("ddd dd MMM, yyyy")</td>
+                                </tr>
+                                <tr>
+                                    <th>Status</th>
+                                    <td>@Html.Raw(ViewBag.status)</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-body">
+
+                <div class="container-fluid">
+                    <h3 style="font-weight:bold">Task</h3>
+                    <hr style="border:1px solid #000000" />
+                    <div class="" style="max-height:600px;overflow:scroll; font-size:14px;">
+                        @Html.Raw(Model.Task.TaskDiscription)
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            @if (Model.Task.EndDate > DateTime.UtcNow.Date)
+            {
+                <div class="box-footer">
+                    @Html.ActionLink("Add/Update Report", "SubmitReport", new {id= Model.TaskId}, new { @class = "btn btn-primary" })
+                    <a href="javascript: history.back()" class="btn btn-default">Cancel</a>
+                </div>
+            }
+            else
+            {
+                <div class="box-footer">
+                    <a class="btn btn-danger">Submission Date Over</a>
+                    <a href="javascript: history.back()" class="btn btn-default">Cancel</a>
+                </div>
+            }
+
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+
+
+    <div class="col-md-1 col-sm-1"></div>
+
+</div>
+
+
+
+

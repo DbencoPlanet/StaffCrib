@@ -1,0 +1,119 @@
+﻿@using AcademicStaff.Areas.Service
+<li class="header">ADMIN NAVIGATION</li>
+<li><a href="@Url.Action("Index", "DashBoard", new { area="Admin"})"><i class="fa fa-dashboard"></i> <span>Admin Dashboard</span></a></li>
+
+
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-home"></i> <span> School Management</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="@Url.Action("Create", "Schools", new { area="Admin"})"><i class="fa fa-home"></i> Add School</a></li>
+        <li><a href="@Url.Action("Index", "Schools", new { area="Admin"})"><i class="fa fa-home"></i> School List</a></li>
+
+    </ul>
+</li>
+
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-building-o"></i> <span> Department Management</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="@Url.Action("Create", "Departments", new { area="Admin"})"><i class="fa fa-building-o"></i> Add Department</a></li>
+        <li><a href="@Url.Action("Index", "Departments", new { area="Admin"})"><i class="fa fa-building-o"></i> Department List</a></li>
+     
+    </ul>
+</li>
+
+
+
+ <li><a href="@Url.Action("Index", "Publications", new { area="Admin"})"><i class="fa fa-pencil-square"></i> Publications</a></li>
+      
+
+
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-paperclip"></i> <span> Document Management</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="@Url.Action("DocumentUpload", "DocumentPanel", new { area="Staff"})"><i class="fa fa-address-book-o"></i> New Document</a></li>
+        <li><a href="@Url.Action("DocIndex", "Panel", new { area="Admin"})"><i class="fa fa-address-book-o"></i> All Official Documents</a></li>
+        <li><a href="@Url.Action("SendReceiveDocIndex", "Panel", new { area="Admin"})"><i class="fa fa-address-book-o"></i> Sent/Receive Documents</a></li>
+
+    </ul>
+</li>
+
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-gears"></i> <span> Task Management</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="@Url.Action("CreateTask", "Panel", new { area="Admin"})"><i class="fa fa-gear"></i> New Task</a></li>
+        <li><a href="@Url.Action("TaskIndex", "Panel", new { area="Admin"})"><i class="fa fa-gear"></i> Tasks</a></li>
+        <li><a href="@Url.Action("ReportIndex", "Panel", new { area="Admin"})"><i class="fa fa-newspaper-o"></i> Reports On Task</a></li>
+    </ul>
+</li>
+
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-user"></i> <span> User Management</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+        <li><a href="@Url.Action("Index", "UserManager", new { area="Admin"})"><i class="fa fa-user-circle"></i> Users</a></li>
+        <li><a href="@Url.Action("Roles", "UserManager", new { area="Admin"})"><i class="fa fa-user-secret"></i> Roles</a></li>
+    </ul>
+</li>
+
+
+
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-user-plus"></i> <span> Account Setting</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+
+    <ul class="treeview-menu">
+        <li><a href="@Url.Action("MyProfile", "User", new { area="Staff"})"><i class="fa fa-picture-o"></i> Profile</a></li>
+
+        <li><a href="@Url.Action("ChangePassword", "Manage", new { area=""})"><i class="fa fa-key"></i> Change Password</a></li>
+    </ul>
+</li>
+
+<li class="treeview">
+    <a href="#">
+        <i class="fa fa-gear"></i> <span>Website Settings</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+    </a>
+    <ul class="treeview-menu">
+       
+        <li><a href="@Url.Action("Index", "ImageSliders", new { area="Admin"})"><i class="fa fa-circle-o"></i> Sliders</a></li>
+        <li><a href="@Url.Action("Index", "ImageGalleries", new { area="Admin"})"><i class="fa fa-circle-o"></i>Galleries</a></li>
+     
+    </ul>
+</li>
+
+<li><a href="@Url.Action("Index", "Home", new {area =""})"><i class="fa fa-home"></i> Home</a></li>
+
+
+
+
+

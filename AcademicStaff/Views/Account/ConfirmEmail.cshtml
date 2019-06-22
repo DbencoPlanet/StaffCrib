@@ -1,0 +1,38 @@
+﻿@*@{
+    ViewBag.Title = "Confirm Email";
+}
+
+<h2>@ViewBag.Title.</h2>
+<div>
+    <p>
+        Thank you for confirming your email. Please @Html.ActionLink("Click here to Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+    </p>
+</div>*@
+
+
+@{
+    ViewBag.Title = "Confirm Email";
+    Layout = "~/Views/Shared/_ForgotPassword.cshtml";
+}
+
+
+
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">@ViewBag.Title. </h3>
+            </div>
+
+            <div class="box-body">
+                <p>Thank you for confirming your email. Please @Html.ActionLink("Click here to Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</p>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+

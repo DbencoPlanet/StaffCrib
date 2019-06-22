@@ -1,0 +1,63 @@
+﻿@model AcademicStaff.Models.Entities.Department
+
+
+@{
+    ViewBag.Title = "Department Details";
+    Layout = "~/Views/Shared/_AreaLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-2 col-sm-2"></div>
+    <div class="col-md-8 col-sm-8">
+        <div class="box box-default">
+
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Department Details</h3>
+
+                </div>
+                <div class="row">
+
+
+                    <table class="table table-success table-bordered table-responsive">
+                        <tr>
+                            <th> @Html.DisplayNameFor(model => model.School.Name)</th>
+                            <td> @Html.DisplayFor(model => model.School.Name)</td>
+                        </tr>
+
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Name)</th>
+                            <td> @Html.DisplayFor(model => model.Name)</td>
+                        </tr>
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.ShortCode)</th>
+                            <td> @Html.DisplayFor(model => model.ShortCode)</td>
+                        </tr>
+
+
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <!-- /.box-body -->
+            <div class="box-footer">
+
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+                <a href="javascript: history.back()" class="btn btn-default">Back</a>
+            </div>
+             
+
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+
+
+    <div class="col-md-2 col-sm-2"></div>
+
+</div>
+

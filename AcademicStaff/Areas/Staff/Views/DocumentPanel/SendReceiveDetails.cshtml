@@ -1,0 +1,91 @@
+﻿@model AcademicStaff.Models.Entities.Document
+
+
+@{
+    ViewBag.Title = "SendReceive Details";
+    Layout = "~/Views/Shared/_AreaLayout.cshtml";
+}
+
+
+
+
+
+
+<div class="row">
+    <div class="col-md-2 col-sm-2 col-xs-1"></div>
+    <div class="col-md-8 col-sm-8 col-xs-10">
+        <div class="box box-default">
+            <div class="box-header with-border">
+
+                <h3 class="box-title">Document Details</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-5 col-sm-10 col-xs-10">
+                        <div class="table-responsive">
+                            <table class="table table-success table-bordered" style="background-color:#3c8dbc; color:#ffffff;">
+
+                                <tr>
+                                    <th>Sender Name</th>
+                                    <td>@Model.Sender.Fullname</td>
+                                </tr>
+                                <tr>
+                                    <th>Receiver Name</th>
+                                    <td>@Model.Receiver.Fullname</td>
+                                </tr>
+                                <tr>
+                                    <th>Doc Name</th>
+                                    <td>@Model.DocName</td>
+                                </tr>
+                                <tr>
+                                    <th>Doc Type</th>
+                                    <td>@Model.DocType</td>
+                                </tr>
+                                <tr>
+                                    <th>Date Uploaded</th>
+                                    <td>@Model.DateUploaded</td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-body">
+
+                <div class="container-fluid">
+                    <h3 style="font-weight:bold;">Document Description</h3>
+                    <hr style="border:1px solid #000000" />
+                    <div class="" style="max-height:600px;overflow:scroll; font-size:20px;">
+                        @Html.Raw(Model.Description)
+                    </div>
+                </div>
+            </div>
+            <div class="box-body">
+
+                <div class="container-fluid">
+                    <h3  style="font-weight:bold";>Remark</h3>
+                    <hr style="border:1px solid #000000" />
+                    <div class="" style="max-height:600px;overflow:scroll; font-size:20px;">
+                        @Html.Raw(Model.Remark)
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+
+
+
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+
+
+    <div class="col-md-2 col-sm-2 col-xs-1"></div>
+
+</div>
+
+
+

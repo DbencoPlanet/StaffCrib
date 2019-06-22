@@ -1,0 +1,167 @@
+﻿@model AcademicStaff.Models.Entities.Profile
+@using AcademicStaff.Areas.Service
+
+<!-- start banner Area -->
+<section class="banner-area relative about-banner" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    STAFF INFO
+                </h1>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start course-details Area -->
+<section class="course-details-area pt-120 section-gap courses-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 left-contents">
+                <div class="main-image">
+                    @*<img class="img-fluid" src="~/Content/AdminLTE/dist/img/bg-6.jpg" alt="">*@
+                    @if (Model.Photo != null)
+                    {
+                        <img class="img-fluid img-thumbnail img-responsive" src="@Url.Content(Model.Photo)" alt="">
+                    }
+
+                    else
+                    {
+                        if (GeneralService.UserInfo().Gender == AcademicStaff.Models.Entities.Gender.Male)
+                        {
+                            <img src="~/Content/AdminLTE/dist/img/avatar5.png" class="img-fluid img-thumbnail img-responsive" alt="User Image">
+                        }
+                        else if (GeneralService.UserInfo().Gender == AcademicStaff.Models.Entities.Gender.Female)
+                        {
+                            <img src="~/Content/AdminLTE/dist/img/avatar3.png" class="img-fluid img-thumbnail img-responsive" alt="User Image">
+                        }
+                        else
+                        {
+                            <img src="~/Content/AdminLTE/dist/img/avatar.png" class="img-fluid img-thumbnail img-responsive" alt="User Image">
+                        }
+                    }
+                </div>
+                <div class="jq-tab-wrapper" id="horizontalTab">
+                    <div class="jq-tab-menu">
+                        <div class="jq-tab-title active" data-tab="1">Biography</div>
+                        <div class="jq-tab-title" data-tab="2">Publications</div>
+
+                    </div>
+                    <div class="jq-tab-content-wrapper">
+                        <div class="jq-tab-content active" data-tab="1">
+                            @Html.Raw(Model.Biography)
+                        </div>
+
+                        <div class="jq-tab-content" data-tab="2">
+                            <ul class="course-list">
+                                @foreach (var pub in Model.Publication)
+                                {
+                                    if (pub != null)
+                                    {
+                                        <li class="justify-content-between d-flex">
+                                            <p>@pub.Title</p>
+                                            <a class="genric-btn info circle text-uppercase" href="@Url.Action("PubDetails","Home",new {id =pub.Id })">View Details</a>
+                                           
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="justify-content-between d-flex">
+                                            <p><b>NO PUBLICATION YET!</b></p>
+                                        </li>
+                                    }
+
+                                }
+
+
+
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 right-contents">
+                <ul>
+                    <li>
+                        <a class="justify-content-between d-flex" href="#">
+                            <p>Staff Name</p>
+                            <span class="or">@Model.Fullname</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="justify-content-between d-flex" href="#">
+                            <p>Rank </p>
+                            <span>@Model.Rank</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="justify-content-between d-flex" href="#">
+                            <p>Email </p>
+                            <span>@Model.User.Email</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="justify-content-between d-flex" href="#">
+                            <p>School </p>
+                            <span>@Model.School.ShortCode</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="justify-content-between d-flex" href="#">
+                            <p>Department </p>
+                            <span>@Model.Department.Name</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="justify-content-between d-flex" href="#">
+                            <p>Phone </p>
+                            <span>@Model.PhoneNo</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="justify-content-between d-flex" href="#">
+                            <p>Religion </p>
+                            <span>@Model.Religion</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="justify-content-between d-flex" href="#">
+                            <p>Marital Status </p>
+                            <span>@Model.MaritalStatus</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="justify-content-between d-flex" href="#">
+                            <p>Gender </p>
+                            <span>@Model.Gender</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="justify-content-between d-flex" href="#">
+                            <p>Nationality </p>
+                            <span>@Model.Nationality</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="justify-content-between d-flex" href="#">
+                            <p>State Of Origin </p>
+                            <span>@Model.StateOfOrigin</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End course-details Area -->

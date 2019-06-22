@@ -1,0 +1,109 @@
+﻿@using AcademicStaff.Models
+@model LoginViewModel
+
+
+@{
+    ViewBag.Title = "Log in";
+
+    Layout = "~/Views/Shared/_Login.cshtml";
+
+
+}
+
+
+<div id="page-container" class="fade">
+    <!-- begin login -->
+    <div class="login login-with-news-feed">
+        <!-- begin news-feed -->
+        <div class="news-feed">
+            <div class="news-image">
+                <img src="~/Content/Admin/bg-8.jpg" data-id="login-cover-image" alt="" />
+            </div>
+            <div class="news-caption">
+
+
+
+                <h4 class="caption-title"><img src="~/Content/images/ico.jpg" /> STAFFCRIB </h4>
+                <p>
+                    We are the best staff in the whole wide world
+                </p>
+            </div>
+
+        </div>
+        <!-- end news-feed -->
+        <!-- begin right-content -->
+        <div class="right-content">
+            <!-- begin login-header -->
+            <div class="login-header">
+                <div class="brand">
+                    @*<span class=""><img src="~/Content/images/ico.jpg" /></span>*@  <span class="logo"></span> STAFFCRIB
+                    <small>We are the best in what we do</small>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-sign-in"></i>
+                </div>
+
+
+
+                @if (TempData["continue"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <strong>@TempData["continue"]</strong>
+                    </div>
+                }
+            </div>
+
+            <!-- end login-header -->
+            <!-- begin login-content -->
+            <div class="login-content">
+
+
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "margin-bottom-0", role = "" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group m-b-15">
+                        <input type="text" name="Username" class="form-control input-lg" placeholder="Email Address" required />
+                        @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group m-b-15">
+                        <input type="password" name="Password" class="form-control input-lg" placeholder="Password" required />
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="checkbox m-b-30">
+                        <label>
+                            <input type="checkbox" name="RememberMe" /> Remember Me
+                        </label>
+                    </div>
+                    <div class="login-buttons">
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">Sign me in</button>
+                    </div>
+                    <div class="m-t-20 m-b-40 p-b-40 text-inverse">
+
+                        Dont have an Account? Click <a href="@Url.Action("Register", "Account")" class="text-primary">here</a> to register.<br />
+                        Forgot Password? Click <a href="@Url.Action("ForgotPassword", "Account")" class="text-primary">here</a> to reset password.
+                    </div>
+
+                    @*<div class="m-t-20 m-b-40 p-b-40 text-inverse">
+
+                            Forgot Password? Click <a href="@Url.Action("ForgotPassword", "Account")" class="text-primary">here</a> to reset password.
+                        </div>*@
+
+                    <hr />
+                    <p class="text-center">
+                        &copy; StaffCrib All Right Reserved @DateTime.Now.Year
+                    </p>
+                }
+            </div>
+            <!-- end login-content -->
+        </div>
+        <!-- end right-container -->
+    </div>
+    <!-- end login -->
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

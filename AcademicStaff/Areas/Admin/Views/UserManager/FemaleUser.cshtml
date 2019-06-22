@@ -1,0 +1,179 @@
+﻿@model IEnumerable<AcademicStaff.Models.Entities.Profile>
+@using AcademicStaff.Areas.Service
+@{
+    ViewBag.Title = "Female User";
+    Layout = "~/Views/Shared/_AreaLayout.cshtml";
+}
+<div class="box-body">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="box" style="padding:7px;">
+                <div class="box-header" style="margin-bottom:15px;">
+                    <h3 class="box-title"><i class="fa fa-fw fa-user-plus"></i> User Management (@ViewBag.female / @ViewBag.countall)</h3>
+                    @if (TempData["success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>@TempData["success"]</strong>
+                        </div>
+                    }
+                </div>
+
+                <div class="box-body">
+                    <div class="btn-group pull-right">
+
+                        @Html.ActionLink("Reset User Password", "ResetUserPassword", "Account", new { area = "" }, new { @class = "btn btn-danger", style = "border-radius:0px !important;" })
+                    </div>
+
+                    <div class="btn-group pull-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                Filter <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    @Html.ActionLink("All User", "Index", null, new { @class = "" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Male User", "MaleUser", null, new { @class = "" })
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                @*<div class="btn-group pull-right">
+                        <span>
+                            @Html.ActionLink("Reset User Password", "ResetUserPassword", "Account", new { area = "" }, new { @class = "btn btn-danger", style = "border-radius:0px !important;" })
+                        </span>
+
+                    </div>*@
+
+
+
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table id="example1" class="table table-bordered table-hover" border="1">
+                        <thead>
+                            <tr>
+                                <th>S/N</th>
+
+                                <th>
+                                    FULL NAME
+                                </th>
+                                <th>
+                                    EMAIL
+                                </th>
+
+                                @foreach (var item in ViewBag.Roles)
+                                {
+                                    <th>@item.Name.ToUpper()</th>
+                                }
+
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int sno = 0;
+                            }
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @{ sno++; }
+                                        @sno
+                                    </td>
+
+                                    <td>
+                                        @item.Surname @item.FirstName @item.OtherNames
+                                    </td>
+
+                                    <td>
+                                        @item.User.Email
+                                    </td>
+
+
+
+                                    @foreach (var role in ViewBag.Roles)
+                                    {
+                                        <td>
+                                            @using (Html.BeginForm("UserToRole", "UserManager"))
+                                            {
+                                                <input type="hidden" value="@item.UserId" name="userId" />
+                                                <input type="hidden" value="@role.Name" name="rolename" />
+                                                <input type="checkbox" class="icheckbox_minimal-blue" name="ischecked" onclick="this.form.submit();" value="true" checked="@GeneralService.IsUserInRole(item.UserId, role.Name)" />
+
+                                            }
+                                        </td>
+                                    }
+
+
+                                    <td>
+
+
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                                                Action <span class="caret"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li>
+                                                    @Html.ActionLink("View User Profile", "UserProfile", new { id = item.Id }, new { @class = "" })
+                                                </li>
+                                                <li>
+                                                    @Html.ActionLink("Edit User Profile", "EditUserProfile", new { id = item.Id }, new { @class = "" })
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+</div>
+
+@section Style {
+
+    <link rel="stylesheet" href="~/Content/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+}
+
+@section Scripts {
+    <!-- DataTables -->
+    <script src="~/Content/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+
+}
+
+
+@section Scripts2 {
+    <script>
+        $(function () {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    </script>
+}

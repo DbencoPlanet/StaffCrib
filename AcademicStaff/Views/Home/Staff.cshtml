@@ -1,0 +1,118 @@
+﻿@model IEnumerable<AcademicStaff.Models.Entities.Profile>
+@using AcademicStaff.Areas.Service
+
+@{
+    ViewBag.Title = "Staff";
+}
+
+
+
+<!-- start banner Area -->
+<section class="banner-area relative about-banner" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    STAFF
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start popular-courses Area -->
+
+<section class="popular-courses-area section-gap courses-page">
+    <div class="container">
+        @*<div class="row d-flex justify-content-center">
+                <div class="menu-content pb-70 col-lg-8">
+                    <div class="title text-center">
+                        <h1 class="mb-10">EVENTS</h1>
+                    </div>
+                </div>
+            </div>*@
+        <div class="row">
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <div class="single-popular-carusel col-lg-3 col-md-6">
+                        <div class="thumb-wrap relative">
+                            <div class="thumb relative">
+                                <div class="overlay overlay-bg"></div>
+
+
+                                @if (item.Photo != null)
+                                {
+
+                                    <img class="img-rounded img-responsive" src="@Url.Content(item.Photo)" alt="" style="width:300px; height:200px;">
+                                }
+
+                                else
+                                {
+                                    if (GeneralService.UserInfo().Gender == AcademicStaff.Models.Entities.Gender.Male)
+                                    {
+                                        <img src="~/Content/AdminLTE/dist/img/avatar5.png" class="img-rounded img-responsive" alt="User Image">
+                                    }
+                                    else if (GeneralService.UserInfo().Gender == AcademicStaff.Models.Entities.Gender.Female)
+                                    {
+                                        <img src="~/Content/AdminLTE/dist/img/avatar3.png" class="img-rounded img-responsive" alt="User Image">
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/AdminLTE/dist/img/avatar.png" class="img-rounded img-responsive" alt="User Image">
+                                    }
+                                }
+
+                            </div>
+
+
+                            <div class="meta d-flex justify-content-between">
+
+                                <h4>@item.Department.ShortCode</h4>
+                            </div>
+
+                        </div>
+
+                        <div class="details">
+
+
+                            <a href="@Url.Action("StaffInfo", "Home", new { id = item.UserId })">
+
+                                <h4>
+                                    @item.Fullname
+                                </h4>
+
+
+                            </a>
+                            <a href="@Url.Action("StaffInfo", "Home", new { id = item.UserId })" class="genric-btn info circle arrow justify-content-center align-items-center"><span class="details">View Info</span><span class="lnr lnr-arrow-right"></span></a>
+                        </div>
+                    </div>
+                }
+
+            }
+            else
+            {
+
+                <div class="single-popular-carusel col-lg-3 col-md-6">
+
+                    <div class="details">
+
+                        <a href="#">
+
+                            <h4>
+                                NO STAFF YET
+                            </h4>
+                        </a>
+
+
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</section>
+
+<!-- End popular-courses Area -->

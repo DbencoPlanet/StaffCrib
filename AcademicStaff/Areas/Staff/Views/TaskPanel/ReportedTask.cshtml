@@ -1,0 +1,206 @@
+﻿
+
+@model IEnumerable<AcademicStaff.Models.Entities.Report>
+
+@{
+    ViewBag.Title = "Task Reports";
+    Layout = "~/Views/Shared/_AreaLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-xs-12">
+        <div class="box" style="padding:7px;">
+            <div class="box-header" style="margin-bottom:15px;">
+                <h3 class="box-title"><i class="fa fa-fw fa-file-text-o"></i> Task Reports</h3>
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table id="example1" class="table table-bordered table-hover" border="1">
+
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>Staff Name</th>
+                            <th>Task</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sno = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @{ sno++; }
+                                    @sno
+                                </td>
+
+                                <td>@item.Profile.Fullname</td>
+                                <td>@item.Task.TaskTitle</td>
+                                <td>@item.Task.StartDate</td>
+                                <td>@item.Task.EndDate</td>
+
+                                <td>
+
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                            Action
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li class="text-color-success">@Html.ActionLink("Details", "ReportDetail", new { id = item.Id }, null)</li>
+                                            <li class="text-color-success">@Html.ActionLink("Edit Report", "EditReport", new {id=item.Id}, null)</li>
+
+
+                                        </ul>
+                                    </div>
+
+                                </td>
+                            </tr>
+                                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+
+
+
+
+@section Style {
+
+    <link rel="stylesheet" href="~/Content/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+}
+
+@section Scripts {
+    <!-- DataTables -->
+    <script src="~/Content/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+}
+
+@section Scripts2 {
+    <script>
+        $(function () {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+@*<div class="row">
+    <div class="col-md-1 col-xs-1"></div>
+    <div class="col-md-10 col-xs-10">
+        <div class="box box-default">
+            <div class="box-header with-border">
+
+                <h3 class="box-title">Report Details</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="table-responsive">
+                      @foreach (var item in Model)
+                         {
+                            <table class="table table-success table-bordered" style="background-color:#3c8dbc; color:#ffffff;">
+
+                               
+                                    <tr>
+                                        <th>NAME</th>
+                                        <td>
+                                           
+                                            @Html.DisplayFor(modelItem => item.Profile.Fullname)
+                                        </td>
+                                    </tr>
+                                    <tr>
+
+                                        <th> TASK</th>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Task.TaskTitle)
+                                        </td>
+                                    </tr>
+                                    <tr>
+
+                                        <th> TASK DISCRIPTION</th>
+                                        <td>
+                                          @Html.Raw(item.Task.TaskDiscription)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>DATE SUBMIT</th>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Task.EndDate)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>DATE MODIFIED </th>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DateModified)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>REPORT </th>
+                                        <td>
+                                            @Html.Raw(item.Content)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>STATUS </th>
+                                        <td>
+                                           @Html.DisplayFor(modelItem => item.TaskStatus)
+                                        </td>
+
+                                    </tr>
+
+                                <tr>
+                                    <th>COMMENT </th>
+                                    <td>
+                                        @Html.Raw(item.Comment)
+                                    </td>
+
+                                </tr>
+                            </table>
+
+}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+
+
+    <div class="col-md-1 col-xs-1"></div>
+
+</div>*@

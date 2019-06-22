@@ -1,0 +1,87 @@
+﻿@model IEnumerable<AcademicStaff.Models.Entities.Event>
+
+@using System.Text.RegularExpressions;
+@helper Truncate(string input, int lenght)
+{
+    if (input.Length <= lenght)
+    {
+        @Html.Raw(input)
+    }
+    else
+    {
+        @Html.Raw(input.Substring(0, input.IndexOf(" ", lenght)).ToString())
+    }
+}
+
+@{
+    ViewBag.Title = "Events";
+}
+
+
+
+<!-- start banner Area -->
+<section class="banner-area relative about-banner" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    EVENTS
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start popular-courses Area -->
+
+        <section class="popular-courses-area section-gap courses-page">
+            <div class="container">
+                @*<div class="row d-flex justify-content-center">
+                        <div class="menu-content pb-70 col-lg-8">
+                            <div class="title text-center">
+                                <h1 class="mb-10">EVENTS</h1>
+                            </div>
+                        </div>
+                    </div>*@
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="single-popular-carusel col-lg-4 col-md-6">
+                            <div class="thumb-wrap relative">
+                                <div class="thumb relative">
+                                    <div class="overlay overlay-bg"></div>
+
+                                    <img class="img-fluid" src="~/Content/AdminLTE/dist/img/bg-6.jpg" alt="">
+                                   
+                                </div>
+                                
+                            </div>
+                            <div class="details">
+                                <p>Date: @item.Start.ToString("dd MMM yyyy")  - @item.End.ToString("dd MMM yyyy")</p>
+
+                                <a href="@Url.Action("EventDetails", "Home", new { id = item.Id })">
+
+                                    <h4>
+                                        @item.Subject
+                                    </h4>
+                                </a>
+
+                                <p style="text-align:justify;">
+                                    @{
+
+                                        var noHtml = Regex.Replace(item.DIscription, @"<[^>]*(>|$)|&nbsp;|&zwnj;|&raquo;|&laquo;", string.Empty).Trim();
+                                        item.DIscription = noHtml;
+                                    }
+
+                                    @Html.Raw(Truncate(noHtml, 200))
+                                </p>
+                                <a href="@Url.Action("EventDetails", "Home", new { id = item.Id })" class="genric-btn info circle text-uppercase mx-auto"> Details </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+   
+<!-- End popular-courses Area -->

@@ -1,0 +1,229 @@
+﻿@model AcademicStaff.Models.Entities.Profile
+@using AcademicStaff.Areas.Service
+
+@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/Shared/_AreaLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-2 col-sm-1">
+        <!-- Widget: user widget style 1 -->
+        <!-- /.widget-user -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-8 col-xs-12 col-sm-10">
+        <!-- Widget: user widget style 1 -->
+        <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+                <h2 class="widget-user-username"><b>@ViewBag.profile.Fullname</b> </h2>
+                <h3 class="widget-user-desc">Rank [@ViewBag.profile.Rank ]</h3>
+
+
+            </div>
+
+            <div class="widget-user-image content1">
+
+                @if (ViewBag.profile.Photo != null)
+                {
+                    <img class="img-circle" src="@Url.Content(ViewBag.profile.Photo)" alt="">
+                }
+                else
+                {
+                    if (GeneralService.UserInfo().Gender == AcademicStaff.Models.Entities.Gender.Male)
+                    {
+                        <img src="~/Content/AdminLTE/dist/img/avatar5.png" class="img-circle" alt="User Image">
+                    }
+                    else if (GeneralService.UserInfo().Gender == AcademicStaff.Models.Entities.Gender.Female)
+                    {
+                        <img src="~/Content/AdminLTE/dist/img/avatar3.png" class="img-circle" alt="User Image">
+                    }
+                    else
+                    {
+                        <img src="~/Content/AdminLTE/dist/img/avatar.png" class="img-circle" alt="User Image">
+                    }
+                }
+
+                @*else
+        {
+            <img class="img-circle" src="~/Content/AdminLTE/dist/img/avatar5.png" height="80" width="80" alt="">
+
+        }*@
+            </div>
+
+            <div class="box-footer">
+                <br />
+                <br />
+                <br />
+            </div>
+            <div class="box-body">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs pull-right">
+
+                        <li><a href="#tab_3-4" data-toggle="tab">Biography</a></li>
+                        <li><a href="#tab_3-2" data-toggle="tab">Faculty</a></li>
+                        <li><a href="#tab_2-2" data-toggle="tab">Contact Address</a></li>
+                        <li class="active"><a href="#tab_1-1" data-toggle="tab">Personal </a></li>
+                        @using AcademicStaff.Areas.Service
+                        @{
+
+                            int? proId = GeneralService.UserInfo().Id;
+
+                        }
+                        @*<li class="btn btn-primary">@Html.ActionLink("Edit Profile", "EditProfile", new { id = proId }, new { @class = "pull-left header" })</li>*@
+                        @Html.ActionLink("Edit Profile", "EditProfile", new { id = proId }, new { @class = "btn btn-primary pull-right header" })
+
+
+                        <li class="pull-left header"><i class="fa fa-user-circle-o"></i> Profile Info</li>
+
+
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1-1">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th width="20%">Email</th>
+                                        <td width="80%">@ViewBag.profile.User.Email</td>
+                                    </tr>
+                                    <tr>
+                                        <th width="20%">Full Name</th>
+                                        <td width="80%">@ViewBag.profile.Fullname</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th width="20%">Staff ID</th>
+                                        <td width="80%">@ViewBag.profile.StaffNo</td>
+                                    </tr>
+                                    <tr>
+                                        <th width="20%">Date of Birth</th>
+                                        <td width="80%">@*@ViewBag.profile.DOB*@ @ViewBag.profile.DOB.ToString("dd MMM, yyyy")</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th width="20%">Date of Birth</th>
+                                        <td width="80%">@ViewBag.profile.PlaceOfBirth</td>
+                                    </tr>
+                                    <tr>
+                                        <th width="20%">Phone Number</th>
+                                        <td width="80%">@ViewBag.profile.PhoneNo</td>
+                                    </tr>
+                                    <tr>
+                                        <th width="20%">Religion</th>
+                                        <td width="80%">@ViewBag.profile.Religion</td>
+                                    </tr>
+                                    <tr>
+                                        <th width="20%">Marital Status</th>
+                                        <td width="80%">@ViewBag.profile.MaritalStatus</td>
+                                    </tr>
+                                    <tr>
+                                        <th width="20%">Gender</th>
+                                        <td width="80%">@ViewBag.profile.Gender</td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <th width="20%"> Current Appt. Date</th>
+                                        <td width="80%">@ViewBag.profile.CurrentAppDate.ToString("ddd dd MMM, yyyy")</td>
+                                    </tr>
+
+
+
+                                </table>
+                            </div>
+
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_2-2">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th width="20%">Nationality</th>
+                                        <td width="80%">@ViewBag.profile.Nationality</td>
+                                    </tr>
+                                    <tr>
+                                        <th width="20%">State Of Origin</th>
+                                        <td width="80%">@ViewBag.profile.StateOfOrigin</td>
+                                    </tr>
+                                    <tr>
+
+                                        <th width="20%">LGA</th>
+                                        <td width="80%">@ViewBag.profile.LocalGov</td>
+                                    </tr>
+                                    <tr>
+                                        <th width="20%">Resident Address</th>
+                                        <td width="80%">@ViewBag.profile.Address</td>
+                                    </tr>
+
+
+
+
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_3-2">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+
+                                    <tr>
+                                        <th width="20%">School</th>
+                                        <td width="80%">@ViewBag.profile.School.Name</td>
+                                    </tr>
+                                    <tr>
+                                        <th width="20%">Department</th>
+                                        <td width="80%">@ViewBag.profile.Department.Name</td>
+                                    </tr>
+
+
+
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- /.tab-content -->
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_3-4">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th width="20%">Biography</th>
+                                        <td width="80%">@Html.Raw(ViewBag.profile.Biography)</td>
+                                    </tr>
+
+
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- /.tab-content -->
+                        <!-- /.tab-pane -->
+
+
+
+                    </div>
+                    <!-- /.tab-content -->
+                </div>
+            </div>
+          
+            <!-- /.tab-content -->
+        </div>
+    </div>
+
+    <!-- /.widget-user -->
+    <!-- /.col -->
+    <div class="col-md-2 col-sm-1">
+        <!-- Widget: user widget style 1 -->
+        <!-- /.widget-user -->
+    </div>
+    <!-- /.col -->
+</div>
+
+
+@section Scripts {
+
+    <script>
+
+    </script>
+}

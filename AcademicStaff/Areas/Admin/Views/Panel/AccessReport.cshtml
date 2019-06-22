@@ -1,0 +1,196 @@
+﻿@model AcademicStaff.Models.Entities.Report
+
+@{
+    ViewBag.Title = "AcccessReport";
+    Layout = "~/Views/Shared/_AreaLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div class="box box-default">
+   
+            <div class="box-header with-border">
+
+                <h3 class="box-title">Access Report</h3>
+
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["error"]
+                    </div>
+                }
+            </div>
+         
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="table-responsive">
+                            <table class="table table-success table-bordered" style="background-color:#3c8dbc; color:#ffffff;">
+                                
+                               
+                                <tr>
+                                    <th>STAFF NAME</th>
+                                    <td>@ViewBag.task.Task.Profile.Fullname</td>
+                                </tr>
+                                <tr>
+                                    <th>TASK</th>
+                                    <td>@ViewBag.task.Task.TaskTitle</td>
+                                </tr>
+                                @*<tr>
+                                    <th>TASK DISCRIPTION</th>
+                                    <td>@Html.Raw(ViewBag.task.TaskDiscription)</td>
+                                </tr>*@
+                                <tr>
+                                    <th>START DATE</th>
+                                    <td>@ViewBag.task.Task.StartDate.ToString("ddd dd MMM, yyyy")</td>
+
+                                </tr>
+                                <tr>
+                                    <th>END DATE</th>
+                                    <td>@ViewBag.task.Task.EndDate.ToString("ddd dd MMM, yyyy")</td>
+
+                                </tr>
+                                @*<tr>
+                                    <th>COMMENT</th>
+                                    <td>@Model.Comment</td>
+
+                                </tr>*@
+                                <tr>
+                                    <th>STATUS</th>
+                                    <td>@Model.TaskStatus</td>
+
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-body">
+
+                <div class="container-fluid">
+                    <h3>Description</h3>
+                    <hr style="border:1px solid #000000" />
+                    <div class="" style="max-height:200px;overflow:scroll;">
+                        @Html.Raw(ViewBag.task.Task.TaskDiscription)
+                    </div>
+                </div>
+            </div>
+            <div class="box-body">
+
+                <div class="container-fluid">
+                    <h3>Comment</h3>
+                    <hr style="border:1px solid #000000" />
+                    <div class="" style="max-height:200px;overflow:scroll;">
+                      @Html.Raw(Model.Comment)
+                    </div>
+                </div>
+            </div>
+            <div class="box-body">
+
+                <div class="container-fluid">
+                    <h3>Report</h3>
+                    <hr style="border:1px solid #000000" />
+                    <div class="" style="max-height:200px;overflow:scroll;">
+                       @foreach (var report in ViewBag.task.Task.Report)
+                       {
+                        @Html.Raw(report.Content)
+                       }
+                         
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.TaskId)
+                @Html.HiddenFor(model => model.ProfileId)
+                @Html.HiddenFor(model => model.DateReported)
+                @Html.HiddenFor(model => model.Content)
+                @Html.HiddenFor(model => model.DateModified)
+
+
+                <div class="box-body">
+
+                    <h3>Access Report</h3>
+                    <div class="form-group">
+
+                        <div class="">
+                                <textarea class="textarea" placeholder="Place some text here" name="Comment" id="mytextarea" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"> @Html.Raw(Model.Comment) </textarea>
+
+                                @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+                            </div>
+                    
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TaskStatus, htmlAttributes: new { @class = "control-label" })
+                            <div class="">
+                                @Html.EnumDropDownListFor(model => model.TaskStatus, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.TaskStatus, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                     
+                    </div>
+
+                </div>
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a href="javascript: history.back()" class="btn btn-default">Cancel</a>
+                </div>
+
+            }
+
+
+        </div>
+        <!-- /.box -->
+   
+    </div>
+    <!-- /.col -->
+
+
+    <div class="col-md-1"></div>
+
+</div>
+          
+@section Style {
+
+    <link rel="stylesheet" href="~/Content/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+}
+
+@section Scripts {
+    <!-- DataTables -->
+    @*@Scripts.Render("~/bundles/jqueryval")*@
+    <script src="~/Content/AdminLTE/bower_components/ckeditor/ckeditor.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="~/Content/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+
+}
+
+@section Scripts2 {
+
+    <script src="~/Content/AdminLTE/tinymce/tinymce.min.js"></script>
+    @*<script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>*@
+    <script>
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+    </script>
+}
+
+
+
+
+
+
+
+

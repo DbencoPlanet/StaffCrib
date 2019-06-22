@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>Login | STAFFCRIB</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <link rel="icon" href="~/Content/images/ico.jpg" type="image/x-icon">
+    <!-- ================== BEGIN BASE CSS STYLE ================== -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="~/Content/Admin/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/Admin/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Admin/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Admin/animate.min.css" rel="stylesheet" />
+    <link href="~/Content/Admin/style.min.css" rel="stylesheet" />
+    <link href="~/Content/Admin/style-responsive.min.css" rel="stylesheet" />
+    <link href="~/Content/Admin/default.css" rel="stylesheet" id="theme" />
+    <!-- ================== END BASE CSS STYLE ================== -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="~/Content/Admin/pace.min.js"></script>
+    <!-- ================== END BASE JS ================== -->
+    <style>
+        .fade.in {
+            opacity: 1 !important;
+        }
+        .fade {
+            opacity: 1 !important;
+        }
+    </style>
+</head>
+<body class="pace-top bg-white">
+
+    @RenderBody()
+    <!-- end page container -->
+    <!-- ================== BEGIN BASE JS ================== -->
+    <script src="~/Content/AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/Content/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/Content/AdminLTE/bower_components/jquery-ui/jquery-ui.min.js"></script>
+    @*<script src="~/Content/Admin/jquery-1.9.1.min.js"></script>*@
+    <script src="~/Content/Admin/jquery-migrate-1.1.0.min.js"></script>
+    @*<script src="~/Content/Admin/jquery-ui.min.js"></script>*@
+    @*<script src="~/Content/Admin/bootstrap.min.js"></script>*@
+    <!--[if lt IE 9]>
+        <script src="assets/crossbrowserjs/html5shiv.js"></script>
+        <script src="assets/crossbrowserjs/respond.min.js"></script>
+        <script src="assets/crossbrowserjs/excanvas.min.js"></script>
+    <![endif]-->
+    <script src="~/Content/Admin/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/Admin/jquery.cookie.js"></script>
+    <!-- ================== END BASE JS ================== -->
+    <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+    <script src="~/Content/Admin/apps.min.js"></script>
+    <!-- ================== END PAGE LEVEL JS ================== -->
+
+    <script>
+        $(document).ready(function () {
+            App.init();
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

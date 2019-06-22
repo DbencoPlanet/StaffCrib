@@ -1,0 +1,82 @@
+﻿@model IEnumerable<AcademicStaff.Models.Entities.ImageGallery>
+
+
+<!-- End banner Area -->
+
+
+
+@*<section class="gallery-area section-gap" id="gallery">
+    <div class="title text-center pb-70">
+            <h1 class="mb-10">Gallery</h1>
+
+        </div>
+    <div class="container">
+        <div class="row">
+            @if (Model != null)
+            {
+                foreach (var image in Model)
+                {
+                    <div class="col-lg-4 col-md-6">
+                        <a href="data:image/jpg;base64,@(Convert.ToBase64String(image.Content))" class="img-gal">
+                            <div class="single-imgs relative">
+                                <div class="overlay overlay-bg"></div>
+                                <div class="relative">
+
+                                    @if (image.Content != null)
+                                    {
+
+                                        <img data-u="image" src="data:image/jpg;base64,@(Convert.ToBase64String(image.Content))" data-thumb="data:image/jpg;base64,@(Convert.ToBase64String(image.Content))" class="img-fluid" alt=""  style="width:300px; height:200px;"/>
+                                    }
+
+
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+
+
+        </div>
+    </div>
+</section>*@
+
+
+<!-- Start popular-course Area -->
+<section class="popular-course-area section-gap">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="menu-content pb-70 col-lg-8">
+                    <div class="title text-center">
+                        <h1 class="mb-10">GALLERY</h1>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="active-popular-carusel">
+                    @foreach (var image in Model)
+                    {
+                        <a href="data:image/jpg;base64,@(Convert.ToBase64String(image.Content))" class="img-gal">
+                            <div class="single-popular-carusel">
+                                <div class="thumb-wrap relative">
+                                    <div class="thumb relative">
+                                        <div class="overlay overlay-bg"></div>
+                                        @if (image.Content != null)
+                                        {
+
+                                            <img data-u="image" src="data:image/jpg;base64,@(Convert.ToBase64String(image.Content))" data-thumb="data:image/jpg;base64,@(Convert.ToBase64String(image.Content))" class="img-fluid" alt="" style="width:300px; height:200px;" />
+                                        }
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- End popular-course Area -->

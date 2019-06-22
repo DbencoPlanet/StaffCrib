@@ -1,0 +1,100 @@
+﻿
+@model AcademicStaff.Models.Entities.Document
+
+@{
+    ViewBag.Title = "Send Doc";
+    Layout = "~/Views/Shared/_AreaLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-2 col-xs-1 col-sm-2"></div>
+    <div class="col-md-8 col-xs-10 col-sm-8 ">
+        <div class="box box-default">
+            <div class="box-header with-border">
+
+                <h3 class="box-title">Send Document</h3>
+
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["error"]
+                    </div>
+                }
+            </div>
+            <!-- /.box-header -->
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="box-body">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.ProfileId)
+                    
+                   
+
+                    <div class="form-group">
+                        @Html.Label("Staff", new { @class = "control-label" })
+                        <div class="">
+                            @Html.DropDownList("ReceiverId", ViewBag.Receiver as SelectList, "Select a Staff", new { @class = "form-control" })
+                        </div>
+                    </div>
+
+     
+
+                </div>
+
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a href="javascript: history.back()" class="btn btn-default">Cancel</a>
+                </div>
+
+            }
+
+        </div>
+        <!-- /.box
+        </div>
+        <!-- /.col -->
+
+
+        <div class="col-md-2 col-xs-1 col-sm-2"></div>
+    </div>
+
+</div>
+@section Style
+                                            {
+
+    <link rel="stylesheet" href="~/Content/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+}
+
+@section Scripts
+  {
+    <!-- DataTables -->
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Content/AdminLTE/bower_components/ckeditor/ckeditor.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="~/Content/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+
+}
+
+@section Scripts2
+ {
+
+    <script src="~/Content/AdminLTE/tinymce/tinymce.min.js"></script>
+    @*<script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>*@
+    <script>
+       tinymce.init({
+        selector: '#mytextarea'
+                   });
+    </script>
+}
+
+
+
+
+
+

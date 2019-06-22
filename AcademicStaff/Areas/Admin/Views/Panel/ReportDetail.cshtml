@@ -1,0 +1,96 @@
+﻿@model AcademicStaff.Models.Entities.Report
+
+
+@{
+    ViewBag.Title = "ReportDetail";
+    Layout = "~/Views/Shared/_AreaLayout.cshtml";
+}
+
+
+
+
+
+<div class="row">
+    <div class="col-md-1 col-sm-1"></div>
+    <div class="col-md-10 col-sm-1">
+        <div class="box box-default">
+            <div class="box-header with-border">
+
+                <h3 class="box-title">Report Details</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-5 col-sm-5">
+                        <div class="table-responsive">
+                            <table class="table table-success table-bordered" style="background-color:#3c8dbc; color:#ffffff;">
+
+                                <tr>
+                                    <th>Name</th>
+                                    <td>@ViewBag.task.Profile.Fullname</td>
+                                </tr>
+                                <tr>
+                                    <th>Title</th>
+                                    <td>@ViewBag.task.Task.TaskTitle</td>
+                                </tr>
+                                <tr>
+                                    <th>Last Submission Date</th>
+                                    <td>@ViewBag.task.Task.EndDate.ToString("ddd dd MMM, yyyy")</td>
+                                </tr>
+                                <tr>
+                                    <th>Status</th>
+                                    <td>@Model.TaskStatus</td>
+                                </tr>
+                                @*<tr>
+                                    <th>Content</th>
+                                    <td>@Html.Raw(Model.Task.TaskDiscription)</td>
+                                </tr>*@
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-body">
+
+                <div class="container-fluid">
+                    <h3 style="font-weight:bold">Task Description</h3>
+                    <hr style="border:1px solid #000000" />
+                    <div class="" style="max-height:600px;overflow:scroll; font-size:20px;">
+                        @Html.Raw(ViewBag.task.Task.TaskDiscription)
+                    </div>
+                </div>
+            </div>
+            <div class="box-body">
+
+                <div class="container-fluid">
+                    <h3 style="font-weight:bold;">Report</h3>
+                    <hr style="border:1px solid #000000" />
+                    <div class="" style="max-height:600px;overflow:scroll; font-size:20px;">
+                        @Html.Raw(Model.Content)
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+          
+                <div class="box-footer">
+                    @Html.ActionLink("Access Report", "AccessReport", new {id = Model.Id}, new { @class = "btn btn-primary" })
+                    <a href="javascript: history.back()" class="btn btn-default">Cancel</a>
+                </div>
+          
+
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+
+
+    <div class="col-md-1 col-sm-1"></div>
+
+</div>
+
+
+
+
+
+

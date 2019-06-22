@@ -1,0 +1,93 @@
+﻿@model IEnumerable<AcademicStaff.Models.Entities.Department>
+
+@{
+    ViewBag.Title = "Departments";
+}
+
+
+
+<!-- start banner Area -->
+<section class="banner-area relative about-banner" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    DEPARTMENTS
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start popular-courses Area -->
+
+<section class="popular-courses-area section-gap courses-page">
+    <div class="container">
+       
+        <div class="row">
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <div class="single-popular-carusel col-lg-3 col-md-6">
+                        <div class="thumb-wrap relative">
+                            <div class="thumb relative">
+                                <div class="overlay overlay-bg"></div>
+                                @if (item.Image != null)
+                                {
+                                    <img class="img-fluid" src="@Url.Content(item.Image)" alt="">
+
+                                }
+                                else
+                                {
+                                    <img class="img-fluid" src="~/Content/AdminLTE/dist/img/bg-6.jpg" alt="">
+                                }
+                            </div>
+
+                        </div>
+                        <div class="details">
+
+                            <a href="@Url.Action("Staff", "Home", new { id = item.Id })">
+
+                                <h4>
+                                    @item.Name
+                                </h4>
+                            </a>
+
+                            <a href="@Url.Action("Staff", "Home", new { id = item.Id })" class="genric-btn info circle arrow justify-content-center align-items-center"><span class="details">Details</span><span class="lnr lnr-arrow-right"></span></a>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="single-popular-carusel col-lg-3 col-md-6">
+                    <div class="thumb-wrap relative">
+                        <div class="thumb relative">
+                            <div class="overlay overlay-bg"></div>
+
+                            <img class="img-fluid" src="~/Content/AdminLTE/dist/img/bg-6.jpg" alt="">
+
+                        </div>
+
+                    </div>
+                    <div class="details">
+
+                        <a href="">
+
+                            <h4>
+                                NO DEPARTMENT YET
+                            </h4>
+                        </a>
+
+                      
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+
+<!-- End popular-courses Area -->

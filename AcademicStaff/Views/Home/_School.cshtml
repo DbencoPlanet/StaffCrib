@@ -1,0 +1,14 @@
+﻿@model IEnumerable<AcademicStaff.Models.Entities.School>
+
+@if (Model != null)
+{
+
+    foreach (var item in Model)
+    {
+        <li><a href="@Url.Action("Schools","Home", new { id = item.Id })"> @item.Name</a></li>
+        @*<li><a href=""> @item.Name</a></li>*@
+    }
+
+}
+
+

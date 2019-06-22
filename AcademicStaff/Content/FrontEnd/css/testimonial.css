@@ -1,0 +1,56 @@
+﻿/*----------------------------------------*/
+/*  8. Testimonial CSS
+/*----------------------------------------*/
+.testimonial-area{
+    background: url(../img/testimonial/testimonial-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    position: relative;
+}
+.testimonial-area:after{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: rgba(44, 43, 94, 0.9);
+}
+.testimonial-area.three{background: #FAFAFA}
+.testimonial-area.three:after{display: none}
+.testimonial-area.three .testimonial-content p{color: #606060}
+.testimonial-area.three .testimonial-content h4, .testimonial-area.three .testimonial-content h5{color: #303030}
+.testimonial-img {
+    height: 77px;
+    margin: auto auto 28px;
+    width: 77px;
+}
+.testimonial-img img{
+    border-radius: 50%;
+    border: 1px solid #FFFFFF;
+}
+.three .testimonial-img img{
+    border: 1px solid #f1f1f1;
+}
+.testimonial-content{padding: 0 35px;}
+.testimonial-content p, .testimonial-content h5{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+.testimonial-content h5{
+    margin-bottom: 0px;
+}
+.testimonial-content h4{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+}
+.testimonial-owl .owl-nav{display: none}
+/*----------------------------------------*/ 

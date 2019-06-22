@@ -1,0 +1,175 @@
+﻿
+@model IEnumerable<AcademicStaff.Models.Entities.Document>
+
+@{
+    ViewBag.Title = "Documents";
+    Layout = "~/Views/Shared/_AreaLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <div class="box" style="padding:7px;">
+            <div class="box-header" style="margin-bottom:15px;">
+                <h3 class="box-title"><i class="fa fa-fw fa-file-text-o"></i> Doucment Management</h3>
+
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["error"]
+                    </div>
+                }
+
+                @if (TempData["msg"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["msg"]
+                    </div>
+                }
+
+
+            </div>
+
+
+            @*<div class="box-body">
+                <div class="btn-group pull-right">
+
+                    @Html.ActionLink("Upload New Document", "DocumentUpload", null, new { @class = "btn btn-primary" })
+                </div>
+
+            </div>*@
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <table id="example1" class="table table-bordered table-hover" border="1">
+
+                    <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>STAFF NAME</th>
+                            <th>DOCUMENT NAME</th>
+                            @*<th>DOCUMENT DESCRIPTION</th>*@
+                            <th>DOCUMENT TYPE</th>
+                            @*<th>DOCUMENT REMARK</th>*@
+                            <th>DATE UPLOADED</th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int sno = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @{ sno++; }
+                                    @sno
+                                </td>
+
+                                <td>@item.Profile.Fullname</td>
+                                <td>@item.DocName</td>
+                                @*<td>@Html.Raw(item.Description)</td>*@
+                                <td>@item.DocType</td>
+                                @*<td>@Html.Raw(item.Remark)</td>*@
+                                <td>@item.DateUploaded</td>
+
+                                <td>
+
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                            Action
+                                            <span class="caret"></span> 
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li class="text-color-success">@Html.ActionLink("Details", "DocDetails", new { id = item.Id }, null)</li>
+                                            <li class="text-color-success">@Html.ActionLink("Review Document", "ReviewDoc", new { id = item.Id }, null)</li>
+                                            <li class="text-color-success"><a href="@Url.Content(item.DocUrl)" download="">Download</a></li>
+                                     </ul>
+                                    </div>
+
+                                </td>
+                            </tr>
+                                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+
+
+
+
+@section Style {
+
+    <link rel="stylesheet" href="~/Content/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+   
+}
+
+@section Scripts {
+    <!-- DataTables -->
+    <script src="~/Content/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    
+
+
+<script>
+
+
+   
+    //$.fancybox.open({
+    //    padding: 0,
+    //    href: $url,
+    //    type: 'iframe',
+    //});
+
+    //$(document).ready(function () {
+    //    $(".word").fancybox({
+    //        'width': 600, // or whatever
+    //        'height': 320,
+    //        'type': 'iframe'
+    //    });
+    //}); //  ready 
+</script>
+
+
+<script type="text/javascript">
+    $("#various3").fancybox({
+        'width': '75%',
+        'height': '75%',
+        'autoScale': false,
+        'transitionIn': 'none',
+        'transitionOut': 'none',
+        'type': 'iframe'
+    });
+</script>
+
+ }
+@section Scripts2 {
+    <script>
+        $(function () {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    </script>
+}
+
+
+
+
+
+

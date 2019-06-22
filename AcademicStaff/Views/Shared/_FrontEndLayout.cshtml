@@ -1,0 +1,276 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <!-- Favicon-->
+    <!-- Page Title -->
+    <title>StaffCrib</title>
+
+    <!-- Favicon and Touch Icons -->
+
+    <link href="img/fav.png" rel="shortcut icon" type="image/png">
+
+
+
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <!--
+    CSS
+    ============================================= -->
+    <link href="~/Content/FrontEnd/css/linearicons.css" rel="stylesheet" />
+    <link href="~/Content/FrontEnd/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/FrontEnd/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/FrontEnd/css/magnific-popup.css" rel="stylesheet" />
+    <link href="~/Content/FrontEnd/css/nice-select.css" rel="stylesheet" />
+    <link href="~/Content/FrontEnd/css/animate.min.css" rel="stylesheet" />
+    <link href="~/Content/FrontEnd/css/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/FrontEnd/css/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/FrontEnd/css/main.css" rel="stylesheet" />
+    <link href="~/Content/FrontEnd/NivoSlider/NivoSlider/themes/default/default.css" rel="stylesheet" media="screen" />
+    <link href="~/Content/FrontEnd/NivoSlider/NivoSlider/themes/bar/bar.css" rel="stylesheet" media="screen" />
+    <link href="~/Content/FrontEnd/NivoSlider/NivoSlider/themes/dark/dark.css" rel="stylesheet" media="screen" />
+    <link href="~/Content/FrontEnd/NivoSlider/NivoSlider/themes/light/light.css" rel="stylesheet" media="screen" />
+    <link href="~/Content/FrontEnd/NivoSlider/NivoSlider/nivo-slider.css" rel="stylesheet" />
+
+
+    @RenderSection("style", required: false)
+
+</head>
+<body>
+    <header id="header" id="home">
+
+
+        <div class="container main-menu">
+            <div class="row align-items-center justify-content-between d-flex">
+                <div id="logo">
+                    <a href="@Url.Action("Index", "Home")"><img src="ben.png" alt="" title="" /></a>
+                </div>
+                <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                        <li><a href="@Url.Content("~/Home/Index")">Home</a></li>
+                        <li><a href="@Url.Content("~/Home/Events")">Events</a></li>
+                        <li><a href="@Url.Content("~/Home/Gallery")">Gallery</a></li>
+                        <li><a href="@Url.Content("~/Home/Publication")">Publications</a></li>
+                        <li class="menu-has-children">
+                            <a href="">School</a>
+                            <ul>
+                                @using AcademicStaff.Helpers
+                                @{
+                                    /**/
+
+
+
+                                    foreach (var m in WebsiteHelper.Schools())
+                                    {
+                                        <li><a href="@Url.Action("Dept", new { id= m.Id }) "> @m.Name</a></li>
+                                    }
+
+                                    @*}*@
+                                }
+
+
+                            </ul>
+                        </li>
+                        <li><a href="@Url.Content("~/Account/Login")">Login</a></li>
+
+                    </ul>
+
+                </nav><!-- #nav-menu-container -->
+            </div>
+        </div>
+    </header><!-- #header -->
+    <!-- start banner Area -->
+    @*<section class="banner-area relative" id="home">
+            <div class="overlay overlay-bg"></div>
+            <div class="container">
+                <div class="row fullscreen d-flex align-items-center justify-content-between">
+                    <div class="banner-content col-lg-9 col-md-12">
+                        <h1 class="text-uppercase">
+                            We Ensure better education
+                            for a better world
+                        </h1>
+                        <p class="pt-10 pb-10">
+                            In the history of modern astronomy, there is probably no one greater leap forward than the building and launch of the space telescope known as the Hubble.
+                        </p>
+                        <a href="#" class="primary-btn text-uppercase">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </section>*@
+    <!-- End banner Area -->
+
+    @RenderBody()
+
+    <!-- Start feature Area -->
+    <!-- End feature Area -->
+    <!-- Start gallery Area -->
+    <!-- End gallery Area -->
+    <!-- Start review Area -->
+    <!-- End review Area -->
+    <!-- Start cta-one Area -->
+    <!-- End cta-one Area -->
+    <!-- Start blog Area -->
+    <!-- End blog Area -->
+    <!-- Start cta-two Area -->
+    <!-- End cta-two Area -->
+    <!-- start footer Area -->
+    <footer class="footer-area section-gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h4>Contact Us</h4>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-phone"></i> 070354StaffCrib</a></li>
+                            <li> <a href="#"><i class="fa fa-inbox"></i> admin@StaffCrib.com</a></li>
+                            <li><a href="#"><i class="fa fa-facebook"></i> StaffCrib</a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i> StaffCrib</a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i> StaffCrib</a></li>
+                            <li> <a href="#"><i class="fa fa-linkedin"></i> StaffCrib</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h4>Quick links</h4>
+                        <ul>
+                            @using AcademicStaff.Helpers
+                            @{
+
+                                foreach (var m in WebsiteHelper.Schools())
+                                {
+                                    <li><a href="@Url.Action("Dept", new { id= m.Id }) "> @m.Name</a></li>
+                                }
+
+
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="@Url.Content("~/Home/Index")">Home</a></li>
+                            <li><a href="@Url.Content("~/Home/Events")">Latest Events</a></li>
+                            <li><a href="@Url.Content("~/Home/Gallery")">Gallery</a></li>
+                            <li><a href="@Url.Content("~/Home/Publication")">Latest Publications</a></li>
+                            <li><a href="@Url.Content("~/Account/Register")">Staff Registration</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3  col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h4>Newsletter</h4>
+                        <p>Stay update with our latest</p>
+                        <div class="" id="mc_embed_signup">
+                            <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="EMAIL" placeholder="Enter Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email Address '" required="" type="email">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">
+                                            <span class="lnr lnr-arrow-right"></span>
+                                        </button>
+                                    </div>
+                                    <div class="info"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="footer-bottom row align-items-center justify-content-between">
+
+
+
+                <p class="footer-text m-0 col-lg-4 col-md-12">Copyright  &copy; @DateTime.UtcNow.Year All Rights Reserved StaffCrib </p>
+
+                @*<p class="footer-text m-0 col-lg-3 col-md-12">All Rights Reserved StaffCrib</p>*@
+
+                <div class="col-lg-4 col-sm-12">
+                    <p class="footer-text m-0 pull-right"><a href="@Url.Action("Index","Home")" target="_blank">StaffCrib Powered by Group 1</a></p>
+
+                </div>
+
+                <div class="col-lg-4 col-sm-12 footer-social">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                    <a href="#"><i class="fa fa-youtube"></i></a>
+                    <a href="#"><i class="fa fa-inbox"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+
+
+
+    </footer>
+    <!-- End footer Area -->
+
+    <script src="~/Content/FrontEnd/js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="~/Content/FrontEnd/js/vendor/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+    <script src="~/Content/FrontEnd/js/easing.min.js"></script>
+    <script src="~/Content/FrontEnd/js/hoverIntent.js"></script>
+    <script src="~/Content/FrontEnd/js/superfish.min.js"></script>
+    <script src="~/Content/FrontEnd/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/Content/FrontEnd/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/FrontEnd/js/jquery.tabs.min.js"></script>
+    <script src="~/Content/FrontEnd/js/jquery.nice-select.min.js"></script>
+    <script src="~/Content/FrontEnd/js/owl.carousel.min.js"></script>
+    <script src="~/Content/FrontEnd/js/mail-script.js"></script>
+    <script src="~/Content/FrontEnd/js/main.js"></script>
+
+    @*<script src="~/Content/Layout_6/NivoSlider/NivoSlider/jquery-1.9.0.min.js"></script>*@
+    @*<script src="~/Content/Layout_6/NivoSlider/NivoSlider/jquery.nivo.slider.pack.js"></script>*@
+    <script src="~/Content/FrontEnd/NivoSlider/NivoSlider/jquery.nivo.slider.js"></script>
+
+
+
+    <script type="text/javascript">
+
+        $(window).load(function () {
+
+            $('#slider').nivoSlider({
+                effect: 'random',
+                slices: 15,
+                boxCols: 8,
+                boxRows: 4,
+                animSpeed: 500,
+                pauseTime: 3000,
+                startSlide: 0,
+                directionNav: true,
+                controlNav: false,
+                controlNavThumbs: false,
+                pauseOnHover: true,
+                manualAdvance: false,
+                prevText: 'Prev',
+                nextText: 'Next',
+                randomStart: true,
+                beforeChange: function () { },
+                afterChange: function () { },
+                slideshowEnd: function () { },
+                lastSlide: function () { },
+                afterLoad: function () { }
+
+            });
+        });
+    </script>
+
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
