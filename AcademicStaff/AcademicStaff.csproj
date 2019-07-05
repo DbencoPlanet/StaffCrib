@@ -277,6 +277,26 @@
     <Compile Include="Migrations\201906220051286_deptandschimage.Designer.cs">
       <DependentUpon>201906220051286_deptandschimage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906270810530_imageupdate.cs" />
+    <Compile Include="Migrations\201906270810530_imageupdate.Designer.cs">
+      <DependentUpon>201906270810530_imageupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906290231454_Imageupdateeee.cs" />
+    <Compile Include="Migrations\201906290231454_Imageupdateeee.Designer.cs">
+      <DependentUpon>201906290231454_Imageupdateeee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906302006389_imageadjust.cs" />
+    <Compile Include="Migrations\201906302006389_imageadjust.Designer.cs">
+      <DependentUpon>201906302006389_imageadjust.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906302055064_imageupdatede.cs" />
+    <Compile Include="Migrations\201906302055064_imageupdatede.Designer.cs">
+      <DependentUpon>201906302055064_imageupdatede.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906302148259_pubandeventimage.cs" />
+    <Compile Include="Migrations\201906302148259_pubandeventimage.Designer.cs">
+      <DependentUpon>201906302148259_pubandeventimage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entities\AdminViewModel.cs" />
@@ -9991,7 +10011,9 @@
     <Folder Include="Content\AdminLTE\build\" />
     <Folder Include="Uploads\DeptImage\" />
     <Folder Include="Uploads\Doc\" />
+    <Folder Include="Uploads\Events\" />
     <Folder Include="Uploads\Profile\" />
+    <Folder Include="Uploads\Pub\" />
     <Folder Include="Uploads\SchoolImage\" />
   </ItemGroup>
   <ItemGroup>
@@ -10064,6 +10086,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906220051286_deptandschimage.resx">
       <DependentUpon>201906220051286_deptandschimage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906270810530_imageupdate.resx">
+      <DependentUpon>201906270810530_imageupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906290231454_Imageupdateeee.resx">
+      <DependentUpon>201906290231454_Imageupdateeee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906302006389_imageadjust.resx">
+      <DependentUpon>201906302006389_imageadjust.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906302055064_imageupdatede.resx">
+      <DependentUpon>201906302055064_imageupdatede.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906302148259_pubandeventimage.resx">
+      <DependentUpon>201906302148259_pubandeventimage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

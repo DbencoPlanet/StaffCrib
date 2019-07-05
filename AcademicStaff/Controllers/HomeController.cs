@@ -15,8 +15,8 @@ using Microsoft.AspNet.Identity;
 
 namespace AcademicStaff.Controllers
 {
-   
 
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -208,14 +208,14 @@ namespace AcademicStaff.Controllers
         public async Task<ActionResult> Dept(int? id)
         {
 
-
+                         
             var sch = await db.Departments.Include(x => x.School).Where(x=>x.SchoolId == id).ToListAsync();
             return View(sch);
 
         }
 
 
-        // GET: Admin/Staff
+        // GET: Admin/Staff          
         public async Task<ActionResult> Staff(int? id)
         {
 
@@ -226,7 +226,6 @@ namespace AcademicStaff.Controllers
         }
 
         // GET: Admin/StaffInfo
-        [AllowAnonymous]
         public ActionResult StaffInfo(string id)
         {
             var sch = db.Profiles.Include(x => x.User).Include(x => x.School).Include(x => x.Department).Include(x => x.Publication).FirstOrDefault(x=>x.UserId == id);

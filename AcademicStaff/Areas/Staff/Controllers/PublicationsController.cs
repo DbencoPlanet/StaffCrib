@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using AcademicStaff.Models;
 using AcademicStaff.Models.Entities;
 using Microsoft.AspNet.Identity;
+using System.IO;
 
 namespace AcademicStaff.Areas.Staff.Controllers
 {
@@ -56,8 +57,27 @@ namespace AcademicStaff.Areas.Staff.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Publication publication)
+        public async Task<ActionResult> Create(Publication publication, HttpPostedFileBase pictures)
         {
+            //    //picture
+            if (pictures != null && pictures.ContentLength > 0)
+
+            {
+                System.Random randomInteger = new System.Random();
+                int genNumber = randomInteger.Next(1000);
+
+                if (pictures.ContentLength > 0 && pictures.ContentType.ToUpper().Contains("JPEG") || pictures.ContentType.ToUpper().Contains("PNG") || pictures.ContentType.ToUpper().Contains("JPG"))
+                {
+
+                    string fileName = Path.GetFileName(publication.Id + "_" + genNumber + "_" + pictures.FileName);
+                    publication.Image = "~/Uploads/Pub/" + fileName;
+                    fileName = Path.Combine(Server.MapPath("~/Uploads/Pub/"), fileName);
+                    pictures.SaveAs(fileName);
+
+
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 var userid = User.Identity.GetUserId();
@@ -95,8 +115,27 @@ namespace AcademicStaff.Areas.Staff.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(Publication publication)
+        public async Task<ActionResult> Edit(Publication publication, HttpPostedFileBase pictures)
         {
+            //    //picture
+            if (pictures != null && pictures.ContentLength > 0)
+
+            {
+                System.Random randomInteger = new System.Random();
+                int genNumber = randomInteger.Next(1000);
+
+                if (pictures.ContentLength > 0 && pictures.ContentType.ToUpper().Contains("JPEG") || pictures.ContentType.ToUpper().Contains("PNG") || pictures.ContentType.ToUpper().Contains("JPG"))
+                {
+
+                    string fileName = Path.GetFileName(publication.Id + "_" + genNumber + "_" + pictures.FileName);
+                    publication.Image = "~/Uploads/Pub/" + fileName;
+                    fileName = Path.Combine(Server.MapPath("~/Uploads/Pub/"), fileName);
+                    pictures.SaveAs(fileName);
+
+
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(publication).State = EntityState.Modified;

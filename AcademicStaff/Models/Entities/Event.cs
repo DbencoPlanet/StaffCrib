@@ -16,5 +16,7 @@ namespace AcademicStaff.Models.Entities
         public string UserId { get; set; }
         public bool? GeneralEvent { get; set; }
         public bool? IsFullDay { get; set; }
+
+        public string Image { get; set; }
     }
 }

@@ -24,7 +24,7 @@
                 }
 
             </div>
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Create", "Publications", FormMethod.Post, new { @class = "", enctype = "multipart/form-data", area = "Staff" }))
             {
                 @Html.AntiForgeryToken()
 
@@ -33,7 +33,12 @@
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
+                    <div class="form-group">
 
+                        <div class="">
+                            <input type="file" name="pictures" class="form-control" />
+                        </div>
+                    </div>
 
 
                     <div class="form-group">

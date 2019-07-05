@@ -7,7 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AcademicStaff.Areas.Service;
-
+using System.IO;
 
 namespace AcademicStaff.Areas.Admin.Controllers
 {
@@ -94,12 +94,30 @@ namespace AcademicStaff.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddEvent(string subject, string description, DateTime start, DateTime end, string color, bool general, bool fday)
+        public ActionResult AddEvent(string subject, string description, DateTime start, DateTime end, string color, bool general, bool fday, HttpPostedFileBase pictures)
         {
             try
             {
                 string u = User.Identity.GetUserId();
                 Event m = new Event();
+                //    //picture
+                if (pictures != null && pictures.ContentLength > 0)
+
+                {
+                    System.Random randomInteger = new System.Random();
+                    int genNumber = randomInteger.Next(1000);
+
+                    if (pictures.ContentLength > 0 && pictures.ContentType.ToUpper().Contains("JPEG") || pictures.ContentType.ToUpper().Contains("PNG") || pictures.ContentType.ToUpper().Contains("JPG"))
+                    {
+
+                        string fileName = Path.GetFileName(m.Id + "_" + genNumber + "_" + pictures.FileName);
+                        m.Image = "~/Uploads/Events/" + fileName;
+                        fileName = Path.Combine(Server.MapPath("~/Uploads/Events/"), fileName);
+                        pictures.SaveAs(fileName);
+
+
+                    }
+                }
                 m.Subject = subject;
                 m.DIscription = description;
                 m.Start = start;

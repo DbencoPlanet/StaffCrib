@@ -21,6 +21,9 @@ namespace AcademicStaff.Models.Entities
         [AllowHtml]
         public string Abstract { get; set; }
 
+       
+        public string Image { get; set; }
+
         [Display(Name = "Staff Name")]
         public int? ProfileId { get; set; }
         public Profile Profile { get; set; }

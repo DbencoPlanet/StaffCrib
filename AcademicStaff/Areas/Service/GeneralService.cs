@@ -41,5 +41,17 @@ namespace AcademicStaff.Areas.Service
             return user;
             
         }
+
+        public static Profile UserInfo2()
+        {
+            Profile user;
+            using (var db = new ApplicationDbContext())
+            {
+                user = db.Profiles.Include(x => x.User).FirstOrDefault();
+
+            }
+            return user;
+
+        }
     }
 }

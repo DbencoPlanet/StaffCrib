@@ -154,7 +154,7 @@ namespace AcademicStaff.Areas.Staff.Controllers
                 //ViewBag.profile = profile;
 
                 //var profileId = await db.Profiles.Include(x => x.User).FirstOrDefaultAsync(x => x.UserId == userid);
-                var tasks = await db.Tasks.Include(x => x.User).Include(x => x.Profile).Where(x => x.ProfileId == proId.Id).Select(x => x.ProfileId).ToListAsync();
+                var tasks = await db.Tasks.Include(x => x.User).Include(x => x.Profile).Where(x => x.ProfileId == proId.Id).OrderByDescending(x=>x.DateCreated).Select(x => x.ProfileId).ToListAsync();
 
                 var mytask = db.Tasks.Include(x => x.Report).Include(x => x.Profile).Where(x => tasks.Contains(x.ProfileId));
 

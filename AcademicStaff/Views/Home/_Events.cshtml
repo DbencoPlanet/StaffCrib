@@ -30,13 +30,22 @@
             {
             <div class="col-lg-4 col-md-6 single-blog">
                 <div class="thumb">
-                    <img class="img-fluid" src="~/Content/AdminLTE/dist/img/bg-6.jpg" alt="">
+                    @*<img class="img-fluid" src="~/Content/AdminLTE/dist/img/bg-6.jpg" alt="">*@
+                    @if (item.Image != null)
+                    {
+                        <img class="img-fluid" src="@Url.Content(item.Image)" alt="" style="width:300px; height:200px;">
+
+                    }
+                    else
+                    {
+                        <img class="img-fluid" src="~/Content/AdminLTE/dist/img/bg-6.jpg" alt="" style="width:300px; height:200px;">
+                    }
                 </div>
                 <p class="meta">Date @item.Start.ToString("dd MMM yyyy") - @item.End.ToString("dd MMM yyyy")</p>
                 <a href="@Url.Action("EventDetails", "Home", new { id = item.Id })">
                     <h5>@item.Subject</h5>
                 </a>
-                <p style="text-align:justify;">
+                @*<p style="text-align:justify;">
                     @{
 
                         var noHtml = Regex.Replace(item.DIscription, @"<[^>]*(>|$)|&nbsp;|&zwnj;|&raquo;|&laquo;", string.Empty).Trim();
@@ -44,7 +53,7 @@
                     }
 
                     @Html.Raw(Truncate(noHtml, 200))
-                </p>
+                </p>*@
                 <a href="@Url.Action("EventDetails", "Home", new { id = item.Id })" class="genric-btn info circle arrow justify-content-center align-items-center"><span class="details">Details</span><span class="lnr lnr-arrow-right"></span></a>
             </div>
             }

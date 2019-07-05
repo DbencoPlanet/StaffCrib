@@ -25,16 +25,16 @@
                     @*<img class="img-fluid" src="~/Content/AdminLTE/dist/img/bg-6.jpg" alt="">*@
                     @if (Model.Photo != null)
                     {
-                        <img class="img-fluid img-thumbnail img-responsive" src="@Url.Content(Model.Photo)" alt="">
+                        <img class="img-fluid img-thumbnail img-responsive" src="@Url.Content(Model.Photo)" alt="" >
                     }
 
                     else
                     {
-                        if (GeneralService.UserInfo().Gender == AcademicStaff.Models.Entities.Gender.Male)
+                        if (GeneralService.UserInfo2().Gender == AcademicStaff.Models.Entities.Gender.Male)
                         {
                             <img src="~/Content/AdminLTE/dist/img/avatar5.png" class="img-fluid img-thumbnail img-responsive" alt="User Image">
                         }
-                        else if (GeneralService.UserInfo().Gender == AcademicStaff.Models.Entities.Gender.Female)
+                        else if (GeneralService.UserInfo2().Gender == AcademicStaff.Models.Entities.Gender.Female)
                         {
                             <img src="~/Content/AdminLTE/dist/img/avatar3.png" class="img-fluid img-thumbnail img-responsive" alt="User Image">
                         }

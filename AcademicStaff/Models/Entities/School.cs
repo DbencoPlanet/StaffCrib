@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace AcademicStaff.Models.Entities
 {
@@ -16,8 +18,12 @@ namespace AcademicStaff.Models.Entities
         [Display(Name = "School Code")]
         public string ShortCode { get; set; }
 
+      
+
         [Display(Name = "Image")]
-        public string Image { get; set; } = "~/Content/AdminLTE/dist/img/bg-6.jpg";
+        public string Image { get; set; }
+
+     
 
         public virtual ICollection<Department> Department { get; set; }
 

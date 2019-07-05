@@ -50,29 +50,51 @@ namespace AcademicStaff.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,ShortCode")] School school, HttpPostedFileBase picture)
+        public async Task<ActionResult> Create(School school, HttpPostedFileBase pictures)
         {
+            //    //picture
+            if (pictures != null && pictures.ContentLength > 0)
+
+            {
+                System.Random randomInteger = new System.Random();
+                int genNumber = randomInteger.Next(1000);
+
+                if (pictures.ContentLength > 0 && pictures.ContentType.ToUpper().Contains("JPEG") || pictures.ContentType.ToUpper().Contains("PNG") || pictures.ContentType.ToUpper().Contains("JPG"))
+                {
+
+                    string fileName = Path.GetFileName(school.ShortCode + "_" + genNumber + "_" + pictures.FileName);
+                    school.Image = "~/Uploads/SchoolImage/" + fileName;
+                    fileName = Path.Combine(Server.MapPath("~/Uploads/SchoolImage/"), fileName);
+                    pictures.SaveAs(fileName);
+
+
+                }
+            }
+
+
+            //if (school.ImageFile != null && school.ImageFile.ContentLength > 0)
+
+            //{
+
+            //    string fileName = Path.GetFileNameWithoutExtension(school.ImageFile.FileName);
+            //    string extension = Path.GetExtension(school.ImageFile.FileName);
+            //    {
+
+            //    }
+            //    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            //    school.Image = "~/Uploads/DeptImage/" + fileName;
+            //    fileName = Path.Combine(Server.MapPath("~/Uploads/SchoolImage/"), fileName);
+            //    school.ImageFile.SaveAs(fileName);
+            //}
+            //else
+            //{
+            //    TempData["error"] = "No File Selected";
+            //    return RedirectToAction("Create");
+            //}
+
             if (ModelState.IsValid)
             {
-                //    //picture
-                if (picture != null && picture.ContentLength > 0)
-
-                {
-                    System.Random randomInteger = new System.Random();
-                    int genNumber = randomInteger.Next(1000);
-
-                    if (picture.ContentLength > 0 && picture.ContentType.ToUpper().Contains("JPEG") || picture.ContentType.ToUpper().Contains("PNG") || picture.ContentType.ToUpper().Contains("JPG"))
-                    {
-
-                        string fileName = Path.GetFileName(school.ShortCode + "_" + genNumber + "_" + picture.FileName);
-                        school.Image = "~/Uploads/SchoolImage/" + fileName;
-                        fileName = Path.Combine(Server.MapPath("~/Uploads/SchoolImage/"), fileName);
-                        picture.SaveAs(fileName);
-
-
-                    }
-                }
-
+               
                 db.Schools.Add(school);
                 await db.SaveChangesAsync();
                 TempData["success"] = "School with the Title  " + school.Name + "  Added Successfully.";
@@ -103,28 +125,49 @@ namespace AcademicStaff.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,ShortCode")] School school, HttpPostedFileBase picture)
+        public async Task<ActionResult> Edit(School school, HttpPostedFileBase pictures)
         {
+            //    //picture
+            if (pictures != null && pictures.ContentLength > 0)
+
+            {
+                System.Random randomInteger = new System.Random();
+                int genNumber = randomInteger.Next(1000);
+
+                if (pictures.ContentLength > 0 && pictures.ContentType.ToUpper().Contains("JPEG") || pictures.ContentType.ToUpper().Contains("PNG") || pictures.ContentType.ToUpper().Contains("JPG"))
+                {
+
+                    string fileName = Path.GetFileName(school.ShortCode + "_" + genNumber + "_" + pictures.FileName);
+                    school.Image = "~/Uploads/SchoolImage/" + fileName;
+                    fileName = Path.Combine(Server.MapPath("~/Uploads/SchoolImage/"), fileName);
+                    pictures.SaveAs(fileName);
+
+
+                }
+            }
+            //if (school.ImageFile != null && school.ImageFile.ContentLength > 0)
+
+            //{
+
+            //    string fileName = Path.GetFileNameWithoutExtension(school.ImageFile.FileName);
+            //    string extension = Path.GetExtension(school.ImageFile.FileName);
+            //    {
+
+            //    }
+            //    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            //    school.Image = "~/Uploads/DeptImage/" + fileName;
+            //    fileName = Path.Combine(Server.MapPath("~/Uploads/DeptImage/"), fileName);
+            //    school.ImageFile.SaveAs(fileName);
+            //}
+            //else
+            //{
+            //    TempData["error"] = "No File Selected";
+            //    return RedirectToAction("Create");
+            //}
+
             if (ModelState.IsValid)
             {
-                //    //picture
-                if (picture != null && picture.ContentLength > 0)
-
-                {
-                    System.Random randomInteger = new System.Random();
-                    int genNumber = randomInteger.Next(1000);
-
-                    if (picture.ContentLength > 0 && picture.ContentType.ToUpper().Contains("JPEG") || picture.ContentType.ToUpper().Contains("PNG") || picture.ContentType.ToUpper().Contains("JPG"))
-                    {
-
-                        string fileName = Path.GetFileName(school.ShortCode + "_" + genNumber + "_" + picture.FileName);
-                        school.Image = "~/Uploads/SchoolImage/" + fileName;
-                        fileName = Path.Combine(Server.MapPath("~/Uploads/SchoolImage/"), fileName);
-                        picture.SaveAs(fileName);
-
-
-                    }
-                }
+               
 
                 db.Entry(school).State = EntityState.Modified;
                 await db.SaveChangesAsync();

@@ -46,16 +46,16 @@
                                 @if (item.Photo != null)
                                 {
 
-                                    <img class="img-rounded img-responsive" src="@Url.Content(item.Photo)" alt="" style="width:300px; height:200px;">
+                                    <img class="img-rounded img-responsive" src="@Url.Content(item.Photo)" alt="">
                                 }
 
                                 else
                                 {
-                                    if (GeneralService.UserInfo().Gender == AcademicStaff.Models.Entities.Gender.Male)
+                                    if (GeneralService.UserInfo2().Gender == AcademicStaff.Models.Entities.Gender.Male)
                                     {
                                         <img src="~/Content/AdminLTE/dist/img/avatar5.png" class="img-rounded img-responsive" alt="User Image">
                                     }
-                                    else if (GeneralService.UserInfo().Gender == AcademicStaff.Models.Entities.Gender.Female)
+                                    else if (GeneralService.UserInfo2().Gender == AcademicStaff.Models.Entities.Gender.Female)
                                     {
                                         <img src="~/Content/AdminLTE/dist/img/avatar3.png" class="img-rounded img-responsive" alt="User Image">
                                     }

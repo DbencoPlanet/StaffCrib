@@ -39,8 +39,17 @@
                     <div class="thumb-wrap relative">
                         <div class="thumb relative">
                             <div class="overlay overlay-bg"></div>
+                            @if (item.Image != null)
+                            {
+                                <img class="img-fluid" src="@Url.Content(item.Image)" alt="" style="width:300px; height:200px;">
 
-                            <img class="img-fluid" src="~/Content/AdminLTE/dist/img/bg-6.jpg" alt="">
+                            }
+                            else
+                            {
+                                <img class="img-fluid" src="~/Content/AdminLTE/dist/img/bg-6.jpg" alt="" style="width:300px; height:200px;">
+                            }
+
+                            @*<img class="img-fluid" src="~/Content/AdminLTE/dist/img/bg-6.jpg" alt="">*@
 
                         </div>
 
@@ -55,7 +64,7 @@
                             </h4>
                         </a>
 
-                        <p style="text-align:justify;">
+                        @*<p style="text-align:justify;">
                             @{
 
                                 var noHtml = Regex.Replace(item.Abstract, @"<[^>]*(>|$)|&nbsp;|&zwnj;|&raquo;|&laquo;", string.Empty).Trim();
@@ -63,7 +72,7 @@
                             }
 
                             @Html.Raw(Truncate(noHtml, 200))
-                        </p>
+                        </p>*@
                         <a href="@Url.Action("PubDetails", "Home", new { id = item.Id })" class="genric-btn info circle text-uppercase mx-auto"> Details </a>
                     </div>
                 </div>
